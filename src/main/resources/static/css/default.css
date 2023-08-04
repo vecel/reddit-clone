@@ -1,0 +1,29 @@
+@charset "UTF-8";
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+button {
+    background-color: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+input {
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+}
+
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+.justify-right {
+    display: flex;
+    justify-content: right;
+}
