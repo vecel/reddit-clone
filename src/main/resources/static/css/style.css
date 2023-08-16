@@ -1,17 +1,7 @@
 @charset "UTF-8";
-:root {
-    /*
-    TODO: change dark colors names
-    */
-    --dark: #222222;
-    --dark2: #343434;
-    --dark3: #494949;
-    --primary-color: #dd510b;
-    --primary-color-dark: #b23b0c;
-}
 
 nav {
-    background-color: var(--dark);
+    background-color: var(--primary-dark);
     padding: 0 1.5rem;
     height: 64px;
     display: grid;
@@ -30,22 +20,9 @@ nav > * {
     border-radius: 2rem;
 }
 
-.filled-button {
-    color: white;
-    font-size: medium;
-    font-weight: bold;
+#log-in-button {
     padding: 0.5rem 1rem;
-    border-radius: 2rem;
     height: calc(100% - 1rem);
-}
-
-.primary-button {
-    background-color: var(--primary-color);
-}
-
-.primary-button:hover {
-    background-color: var(--primary-color-dark);
-    text-decoration: underline;
 }
 
 #logo-container {
@@ -56,7 +33,6 @@ nav > * {
 #logo {
     color: white;
     font-size: x-large;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     cursor: pointer;
 }
 
@@ -69,7 +45,7 @@ nav > * {
 }
 
 label[for=search-bar] {
-    background-color: var(--dark2);
+    background-color: var(--secondary-dark);
     padding: 0 1rem;
     height: calc(100% - 1rem);
     width: 70%;
@@ -79,7 +55,7 @@ label[for=search-bar] {
 }
 
 label[for=search-bar]:hover {
-    background-color: var(--dark3);
+    background-color: var(--tertiary-dark);
 }
 
 label[for=search-bar] > * {
