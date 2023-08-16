@@ -49,7 +49,7 @@
                     </label>
                 </div>
                 <div class="input-container">
-                    <label for="signup-button">
+                    <label for="signup-button" class="submit-button-label">
                         <input id="signup-button" class="primary-button" type="submit" value="Sign Up">
                     </label>
                 </div>
@@ -57,6 +57,45 @@
 
             <div class="small-font">
                 <span>Already a redditor? <span class="prominent-link">Log in</span></span>
+            </div>
+        </form>
+
+        <form id="login" hidden>
+            <div>
+                <span class="title-font">Log In</span>
+            </div>
+
+            <div class="small-font gap-bottom-bigger">
+                <p>
+                    By continuing, you are setting up a Reddit account and agree to our <a>User Agreement</a> and <a>Privacy Policy</a>. 
+                </p>
+            </div>
+
+            <div class="form-fields-container gap-bottom">
+                <div class="input-container">
+                    <label for="login-username">
+                        <input id="login-username" type="text" placeholder="Username">
+                    </label>
+                </div>
+                <div class="input-container" style="margin-bottom: 1rem;">
+                    <label for="login-password">
+                        <input id="login-password" type="password" placeholder="Password">
+                    </label>
+                </div>
+
+                <div class="small-font gap-bottom">
+                    <span>Forgot your <span class="prominent-link">username</span> or <span class="prominent-link">password</span>?</span>
+                </div>
+
+                <div class="input-container">
+                    <label for="login-button" class="submit-button-label">
+                        <input id="login-button" class="primary-button" type="submit" value="Log In">
+                    </label>
+                </div>
+            </div>
+
+            <div class="small-font">
+                <span>New to Reddit? <span class="prominent-link">Sign Up</span></span>
             </div>
         </form>
     </main>

@@ -34,11 +34,15 @@ form {
     margin-bottom: 1rem;
 }
 
+.gap-bottom-bigger {
+    margin-bottom: 2rem;
+}
+
 .prominent-link {
     cursor: pointer;
     color: blue;
     text-decoration: underline;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .form-fields-container {
@@ -68,7 +72,7 @@ label[for="notifications"] {
     cursor: pointer;
 }
 
-label[for="signup-button"] {
+label.submit-button-label {
     background-color: transparent;
     justify-content: center;
 }
