@@ -20,7 +20,7 @@ nav > * {
     border-radius: 2rem;
 }
 
-#log-in-button {
+#login-page-button {
     padding: 0.5rem 1rem;
     height: calc(100% - 1rem);
 }

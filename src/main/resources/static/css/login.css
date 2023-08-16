@@ -77,6 +77,6 @@ label.submit-button-label {
     justify-content: center;
 }
 
-input#signup-button {
+input#signup-button, input#login-button {
     width: 70%;
 }

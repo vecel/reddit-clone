@@ -9,6 +9,11 @@
 	<!--sciezka eclipse-->
 	<!-- <link rel="stylesheet" type="text/css" href="/css/default.css"> -->
 	<!-- <link rel="stylesheet" type="text/css" href="/css/login.css"> -->
+
+    <!-- sciezka vscode -->
+    <script src="../static/js/toggleForm.js" defer></script>
+    <!-- sciezka eclipse -->
+    <!-- <script src="/js/toggleForm.js"></script> -->
 </head>
 <body>
     <main>
@@ -56,7 +61,7 @@
             </div>
 
             <div class="small-font">
-                <span>Already a redditor? <span class="prominent-link">Log in</span></span>
+                <span>Already a redditor? <span id="show-login-form" class="prominent-link" onclick="showLoginForm()">Log in</span></span>
             </div>
         </form>
 
@@ -95,7 +100,7 @@
             </div>
 
             <div class="small-font">
-                <span>New to Reddit? <span class="prominent-link">Sign Up</span></span>
+                <span>New to Reddit? <span id="show-signup-form" class="prominent-link" onclick="showSignupForm()">Sign Up</span></span>
             </div>
         </form>
     </main>
