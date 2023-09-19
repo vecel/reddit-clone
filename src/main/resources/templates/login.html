@@ -1,71 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 	<title>Reddit Clone</title>
 	<!--sciezka vscode-->
-	<link rel="stylesheet" type="text/css" href="../static/css/default.css">
-	<link rel="stylesheet" type="text/css" href="../static/css/login.css">
+	<!--<link rel="stylesheet" type="text/css" href="../static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/login.css">-->
 	<!--sciezka eclipse-->
-	<!-- <link rel="stylesheet" type="text/css" href="/css/default.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="/css/login.css"> -->
-
-    <!-- sciezka vscode -->
-    <script src="../static/js/toggleForm.js" defer></script>
-    <!-- sciezka eclipse -->
-    <!-- <script src="/js/toggleForm.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="/css/default.css"> 
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
     <main>
-        <form id="signup">
-            <div>
-                <span class="title-font">Sign Up</span>
-            </div>
-
-            <div class="small-font gap-bottom">
-                <p>
-                    By continuing, you are setting up a Reddit account and agree to our <a>User Agreement</a> and <a>Privacy Policy</a>. 
-                </p>
-            </div>
-
-            <div class="small-font gap-bottom">
-                <label for="notifications"><input id="notifications" type="checkbox">I agree to get emails about cool stuff on Reddit </label>
-            </div>
-
-            <div class="form-fields-container gap-bottom">
-                <div class="input-container">
-                    <label for="signup-email">
-                        <input id="signup-email" type="email" placeholder="Email">
-                    </label>
-                </div>
-                <div class="input-container">
-                    <label for="signup-username">
-                        <input id="signup-username" type="text" placeholder="Username">
-                    </label>
-                </div>
-                <div class="input-container">
-                    <label for="signup-password">
-                        <input id="signup-password" type="password" placeholder="Password">
-                    </label>
-                </div>
-                <div class="input-container">
-                    <label for="signup-password-2">
-                        <input id="signup-password-2" type="password" placeholder="Confirm password">
-                    </label>
-                </div>
-                <div class="input-container">
-                    <label for="signup-button" class="submit-button-label">
-                        <input id="signup-button" class="primary-button" type="submit" value="Sign Up">
-                    </label>
-                </div>
-            </div>
-
-            <div class="small-font">
-                <span>Already a redditor? <span id="show-login-form" class="prominent-link" onclick="showLoginForm()">Log in</span></span>
-            </div>
-        </form>
-
-        <form id="login" hidden>
+        <form id="login" th:action="@{/login}" th:method="post" th:object="${user}">
             <div>
                 <span class="title-font">Log In</span>
             </div>
@@ -79,7 +26,7 @@
             <div class="form-fields-container gap-bottom">
                 <div class="input-container">
                     <label for="login-username">
-                        <input id="login-username" type="text" placeholder="Username">
+                        <input id="login-username" type="text" placeholder="Username" th:field="*{username}">
                     </label>
                 </div>
                 <div class="input-container" style="margin-bottom: 1rem;">
@@ -100,7 +47,7 @@
             </div>
 
             <div class="small-font">
-                <span>New to Reddit? <span id="show-signup-form" class="prominent-link" onclick="showSignupForm()">Sign Up</span></span>
+                <span>New to Reddit? <a id="show-signup-form" class="prominent-link" href="register">Sign Up</a></span>
             </div>
         </form>
     </main>

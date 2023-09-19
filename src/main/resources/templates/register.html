@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<title>Reddit Clone</title>
+	<!--sciezka vscode-->
+	<!--<link rel="stylesheet" type="text/css" href="../static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/login.css">-->
+	<!--sciezka eclipse-->
+	<link rel="stylesheet" type="text/css" href="/css/default.css"> 
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+</head>
+<body>
+    <main>
+        <form id="signup" th:action="@{/register}" th:method="post" th:object="${user}">
+            <div>
+                <span class="title-font">Sign Up</span>
+            </div>
+
+            <div class="small-font gap-bottom">
+                <p>
+                    By continuing, you are setting up a Reddit account and agree to our <a>User Agreement</a> and <a>Privacy Policy</a>. 
+                </p>
+            </div>
+
+            <div class="small-font gap-bottom">
+                <label for="notifications"><input id="notifications" type="checkbox">I agree to get emails about cool stuff on Reddit </label>
+            </div>
+
+            <div class="form-fields-container gap-bottom">
+				<div class="input-container">
+                    <label for="signup-username">
+                        <input id="signup-username" type="text" placeholder="Username" th:field="*{username}">
+                    </label>
+                </div>
+                <div class="input-container">
+                    <label for="signup-email">
+                        <input id="signup-email" type="email" placeholder="Email" th:field="*{email}">
+                    </label>
+                </div>
+                <div class="input-container">
+                    <label for="signup-password">
+                        <input id="signup-password" type="password" placeholder="Password">
+                    </label>
+                </div>
+                <div class="input-container">
+                    <label for="signup-password-2">
+                        <input id="signup-password-2" type="password" placeholder="Confirm password">
+                    </label>
+                </div>
+                <div class="input-container">
+                    <label for="signup-button" class="submit-button-label">
+                        <input id="signup-button" class="primary-button" type="submit" value="Sign Up">
+                    </label>
+                </div>
+            </div>
+
+            <div class="small-font">
+                <span>Already a redditor? <a id="show-login-form" class="prominent-link" href="login">Log in</a></span>
+            </div>
+        </form>
+
+    </main>
+</body>
+</html>
