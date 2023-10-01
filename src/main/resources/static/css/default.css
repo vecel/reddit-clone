@@ -51,7 +51,7 @@ input {
 
 .justify-center {
     display: flex;
-    justify-content: right;
+    justify-content: center;
 }
 
 .primary-button {

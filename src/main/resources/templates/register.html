@@ -7,8 +7,8 @@
 	<!-- <link rel="stylesheet" type="text/css" href="../static/css/default.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/login.css"> -->
 	<!--sciezka eclipse-->
-	<link rel="stylesheet" type="text/css" href="/css/default.css"> 
-	<link rel="stylesheet" type="text/css" href="/css/login.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/default.css}"> 
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
 	
     <!--sciezka vscode-->
     <!-- <script src="../static/js/register.js" defer></script> -->
@@ -54,8 +54,7 @@
                         <input id="confirm-signup-password" type="password" placeholder="Confirm password" required>
                     </label>
                 </div>
-                <div class="input-container">
-                    <!-- todo: zmniejszyc width label-a-->
+                <div class="input-container justify-center">
                     <label for="signup-button" class="submit-button-label">
                         <input id="signup-button" class="primary-button" type="submit" value="Sign Up">
                     </label>

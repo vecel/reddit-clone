@@ -75,8 +75,6 @@ label[for="notifications"] {
 label.submit-button-label {
     background-color: transparent;
     justify-content: center;
-}
-
-input#signup-button, input#login-button {
     width: 70%;
+    padding: 0;
 }
