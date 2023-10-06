@@ -14,11 +14,11 @@
     <!-- <script src="../static/js/register.js" defer></script> -->
 
     <!--sciezka eclipse-->
-	<script src="/js/register.js" defer></script>
+	<!-- <script src="/js/register.js" defer></script> -->
 </head>
 <body>
     <main>
-        <form id="signup" th:action="@{/register}" th:method="post" th:object="${user}">
+        <form id="signup" action="#" th:action="@{/register}" th:method="post" th:object="${user}">
             <div>
                 <span class="title-font">Sign Up</span>
             </div>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="small-font gap-bottom">
-                <label for="notifications"><input id="notifications" type="checkbox" required>I agree to get emails about cool stuff on Reddit </label>
+                <label for="notifications"><input id="notifications" type="checkbox">I agree to get emails about cool stuff on Reddit </label>
             </div>
 
             <div class="form-fields-container gap-bottom">
@@ -39,21 +39,25 @@
                         <input id="signup-username" type="text" placeholder="Username" th:field="*{username}" required autocomplete="new-password" >
                     </label>
                 </div>
+                <p class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                 <div class="input-container">
                     <label for="signup-email">
                         <input id="signup-email" type="email" placeholder="Email" th:field="*{email}" required autocomplete="new-password">
                     </label>
                 </div>
+                <p class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                 <div class="input-container">
                     <label for="signup-password">
-                        <input id="signup-password" type="password" placeholder="Password" required>
+                        <input id="signup-password" type="password" placeholder="Password" th:field="*{password}" required autocomplete="new-password">
                     </label>
                 </div>
+                <p class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                 <div class="input-container">
                     <label for="confirm-signup-password">
-                        <input id="confirm-signup-password" type="password" placeholder="Confirm password" required>
+                        <input id="confirm-signup-password" type="password" placeholder="Confirm password" required autocomplete="new-password">
                     </label>
                 </div>
+                <!-- <p class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p> -->
                 <div class="input-container justify-center">
                     <label for="signup-button" class="submit-button-label">
                         <input id="signup-button" class="primary-button" type="submit" value="Sign Up">

@@ -4,28 +4,45 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "\"USER\"")
+@Table(name = "USERS")
 public class User {
+	
+	/**
+	 * Na razie niezbyt bezpiecznie pobierane jest haslo z formsa
+	 */
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String email;
+	
+	@NotNull(message = "Username must not be null")
+	@Size(min = 4, message = "Username must be at least 4 characters long")
 	private String username;
-	private int passwordHash;
+	
+	@NotNull(message = "Email must not be null")
+	@Email(message = "Invalid email adress")
+	private String email;
+	
+	@NotNull(message = "Password must not be empty")
+	@Size(min = 8, message = "Password must be at least 8 characters long")
+	private String password;
+	
+//	private int passwordHash;
 
 	public User() {
 
 	}
 
-	public User(String email, String username, int passwordHash) {
+	public User(String email, String username, String password) {
 		super();
 		this.email = email;
 		this.username = username;
-		this.passwordHash = passwordHash;
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -44,10 +61,17 @@ public class User {
 		this.username = username;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "User [email=" + email + ", username=" + username + "]";
 	}
 
-	
 }

@@ -2,10 +2,12 @@ package pl.karandysm.redditclone.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.validation.Valid;
 import pl.karandysm.redditclone.model.User;
 import pl.karandysm.redditclone.repository.UserRepository;
 
@@ -25,9 +27,14 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/register")
-	public String submitForm(@ModelAttribute("user") User user) {
-//		System.out.println(user);
-//		System.out.println(userRepository.findAll());
-		return "index";
+	public String submitForm(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+		System.out.println(user);
+		if(bindingResult.hasErrors()) {
+			System.out.println("dupa");
+			return "register";
+		}
+		
+		// todo dodac do bazy danych
+		return "redirect:/";
 	}
 }

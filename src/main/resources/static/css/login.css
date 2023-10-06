@@ -45,6 +45,12 @@ form {
     /* font-weight: bold; */
 }
 
+.error-message {
+	color: red;
+	font-size: 0.8rem;
+	margin-bottom: 0.5rem;
+}
+
 .form-fields-container {
     display: flex;
     flex-direction: column;
