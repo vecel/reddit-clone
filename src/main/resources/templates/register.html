@@ -14,11 +14,11 @@
     <!-- <script src="../static/js/register.js" defer></script> -->
 
     <!--sciezka eclipse-->
-	<script src="/js/register.js" defer></script>
+	<!-- <script src="/js/register.js" defer></script> -->
 </head>
 <body>
     <main>
-        <form id="signup" action="#" th:action="@{/register}" th:method="post" th:object="${user}">
+        <form id="signup" action="#" th:action="@{/register}" th:method="post" th:object="${userDto}">
             <div>
                 <span class="title-font">Sign Up</span>
             </div>
@@ -54,10 +54,10 @@
                 <p class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                 <div class="input-container">
                     <label for="confirm-signup-password">
-                        <input id="confirm-signup-password" type="password" placeholder="Confirm password" required autocomplete="new-password">
+                        <input id="confirm-signup-password" type="password" placeholder="Confirm password" th:field="*{passwordMatch}" required autocomplete="new-password">
                     </label>
                 </div>
-                <!-- <p class="error-message" th:if="${#fields.hasErrors('')}" th:errors="*{}"></p> -->
+                <p class="error-message" th:if="${#fields.hasErrors('global')}" th:each="err : ${#fields.errors('global')}" th:text="${err}"></p>
                 <div class="input-container justify-center">
                     <label for="signup-button" class="submit-button-label">
                         <input id="signup-button" class="primary-button" type="submit" value="Sign Up">

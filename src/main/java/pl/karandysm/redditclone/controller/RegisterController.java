@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
+import pl.karandysm.redditclone.dto.UserDto;
 import pl.karandysm.redditclone.model.User;
 import pl.karandysm.redditclone.repository.UserRepository;
 
@@ -22,14 +23,15 @@ public class RegisterController {
 
 	@GetMapping("/register")
 	public String displayForm(Model model) {
-		model.addAttribute("user", new User());
+		model.addAttribute("userDto", new UserDto());
 		return "register";
 	}
 	
 	@PostMapping("/register")
-	public String submitForm(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-		System.out.println(user);
+	public String submitForm(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult) {
+		System.out.println(userDto);
 		if(bindingResult.hasErrors()) {
+			System.out.println(bindingResult.getAllErrors());
 			System.out.println("dupa");
 			return "register";
 		}
