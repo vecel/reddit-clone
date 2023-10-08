@@ -9,16 +9,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
 import pl.karandysm.redditclone.dto.UserDto;
+import pl.karandysm.redditclone.exceptions.RegisterException;
+import pl.karandysm.redditclone.exceptions.UserExistsWithEmailException;
+import pl.karandysm.redditclone.exceptions.UserExistsWithUsernameException;
 import pl.karandysm.redditclone.model.User;
-import pl.karandysm.redditclone.repository.UserRepository;
+import pl.karandysm.redditclone.service.UserService;
 
 @Controller
 public class RegisterController {
 	
-	private final UserRepository userRepository;
+	private final UserService userService;
 	
-	public RegisterController(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	public RegisterController(UserService userService) {
+		this.userService = userService;
 	}
 
 	@GetMapping("/register")
@@ -31,12 +34,22 @@ public class RegisterController {
 	public String submitForm(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult) {
 		System.out.println(userDto);
 		if(bindingResult.hasErrors()) {
-			System.out.println(bindingResult.getAllErrors());
-			System.out.println("dupa");
 			return "register";
 		}
 		
-		// todo dodac do bazy danych
+		try {
+			User user = userService.registerUser(userDto);
+			System.out.println("Registerd new user " + user);
+		} catch(UserExistsWithUsernameException e) {
+			bindingResult.rejectValue("username", "usernameTaken", e.getMessage());
+			return "register";
+		} catch(UserExistsWithEmailException e) {
+			bindingResult.rejectValue("email", "emailTaken", e.getMessage());
+			return "register";
+		} catch(RegisterException e) {
+			System.out.println("Caught RegisterException!!!");
+		}
+		
 		return "redirect:/";
 	}
 }

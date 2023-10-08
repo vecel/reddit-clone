@@ -22,8 +22,8 @@ public class DbInit implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		userRepository.saveAll(List.of(
-			new User("test.test@gmail.com", "testuser", "Testuserpass1"),
-			new User("admin.admin@gmail.com", "admin", "Adminadmin0")
+			new User("testuser", "test.test@gmail.com", 2137),
+			new User("admin", "admin.admin@gmail.com", 1)
 		));
 	}
 	 

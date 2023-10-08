@@ -12,9 +12,11 @@ import pl.karandysm.redditclone.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	@Query(value = "SELECT * FROM users WHERE username=:username", nativeQuery = true)
-	List<User> findUsersByUsername(@Param("username") String username);
+	List<User> findByUsername(String username);
 	
-	@Query(value = "SELECT * FROM users WHERE email=:email", nativeQuery = true)
-	List<User> findUsersByEmail(@Param("email") String email);
+	List<User> findByEmail(String email);
+
+	boolean existsByUsername(String username);
+	
+	boolean existsByEmail(String email);
 }
