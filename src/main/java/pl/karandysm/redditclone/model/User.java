@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -30,6 +31,8 @@ public class User {
 	
 	@NotNull(message = "Password must not be empty")
 	@Size(min = 8, message = "Password must be at least 8 characters long")
+	@Pattern(regexp = "^(?=.*[A-Z]).{8,}$", message = "Password must contain at least one capital letter")
+	@Pattern(regexp = "^(?=.*\\d).{8,}$", message = "Password must contain at least one digit")
 	private String password;
 	
 //	private int passwordHash;
