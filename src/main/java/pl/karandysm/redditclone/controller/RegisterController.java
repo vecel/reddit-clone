@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import pl.karandysm.redditclone.dto.UserDto;
 import pl.karandysm.redditclone.exceptions.RegisterException;
@@ -31,7 +32,7 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/register")
-	public String submitForm(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult) {
+	public String submitForm(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult, HttpSession session) {
 		System.out.println(userDto);
 		if(bindingResult.hasErrors()) {
 			return "register";
@@ -39,6 +40,8 @@ public class RegisterController {
 		
 		try {
 			User user = userService.registerUser(userDto);
+			session.setAttribute("user", user);
+			
 			System.out.println("Registerd new user " + user);
 		} catch(UserExistsWithUsernameException e) {
 			bindingResult.rejectValue("username", "usernameTaken", e.getMessage());

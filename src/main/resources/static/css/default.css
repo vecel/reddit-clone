@@ -66,6 +66,14 @@ input {
     background-color: var(--secondary-color);
 }
 
+.small-font {
+    font-size: 0.85rem;
+}
+
 .medium-font {
     font-size: medium;
+}
+
+.gap-right {
+    margin-right: 0.5rem;
 }

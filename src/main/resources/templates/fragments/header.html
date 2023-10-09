@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <header th:fragment="header">
+		<nav>
+			<div id="logo-container" class="align-center">
+				<div id="logo" class="align-center">
+					<div class="circle"></div>
+					<span>Redd<span style="color:var(--primary-color)">i</span>tClone</span>
+				</div>
+			</div>
+			<div id="search-bar-container" class="align-center">
+				<label for="search-bar" class="align-center">
+					<span class="material-icons">search</span>
+					<input id="search-bar" placeholder="Search Reddit Clone">
+				</label>
+			</div>
+			<div class="align-center justify-right">
+				<button th:if="${session.user == null}" id="login-page-button" class="primary-button medium-font" onclick="window.location.href='login';">Log In</button>
+
+				<div th:if="${session.user != null}" class="align-center justify-right" style="color: gray;">
+					<span class="gap-right material-icons md-36">account_circle</span>
+					<span id="username" class="gap-right" th:text="${session.user.getUsername()}"></span>
+					<span class="material-icons">logout</span>
+				</div>
+			</div>
+		</nav>
+	</header>
+</body>

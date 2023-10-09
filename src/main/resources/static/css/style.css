@@ -5,7 +5,7 @@ nav {
     padding: 0 1.5rem;
     height: 64px;
     display: grid;
-    grid-template-columns: 2fr 7fr 1fr;
+    grid-template-columns: 2fr 7fr 2fr;
 }
 
 nav > * {
@@ -68,4 +68,11 @@ label[for=search-bar] > * {
     flex-grow: 1;
     color: white;
     font-size: medium;
+}
+
+#username {
+	max-width: 10rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
