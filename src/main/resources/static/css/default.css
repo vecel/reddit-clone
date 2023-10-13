@@ -1,10 +1,14 @@
 @charset "UTF-8";
 :root {
+    --primary-color: #dd510b;
+    --secondary-color: #b23b0c;
+    
     --primary-dark: #222222;
     --secondary-dark: #343434;
     --tertiary-dark: #494949;
-    --primary-color: #dd510b;
-    --secondary-color: #b23b0c;
+    
+    --primary-bright: #ffffff;
+    --secondary-bright: #dddddd;
 }
 
 body {
@@ -22,7 +26,8 @@ p {
 }
 
 a {
-    color: blue;
+    color: black;
+    text-decoration: none;
 }
 
 button {
