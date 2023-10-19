@@ -4,51 +4,48 @@
     <meta charset="UTF-8">
 	<title>Reddit Clone</title>
 	<!--sciezka vscode-->
-	<!--<link rel="stylesheet" type="text/css" href="../static/css/default.css">
-	<link rel="stylesheet" type="text/css" href="../static/css/login.css">-->
+	<link rel="stylesheet" type="text/css" href="../static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/login.css">
 	<!--sciezka eclipse-->
-	<link rel="stylesheet" type="text/css" href="/css/default.css"> 
-	<link rel="stylesheet" type="text/css" href="/css/login.css">
+	<!-- <link rel="stylesheet" type="text/css" href="/css/default.css"> 
+	<link rel="stylesheet" type="text/css" href="/css/login.css"> -->
 </head>
 <body>
-    <main>
-        <form id="login" th:action="@{/login}" th:method="post" th:object="${user}">
-            <div>
-                <span class="title-font">Log In</span>
-            </div>
+    <main class="main">
+        <form class="form" th:action="@{/login}" th:method="post" th:object="${user}">
+            
+            <span class="form__title">Log In</span>
+        
+            <p class="form__text form__text--gap-bottom">
+                By continuing, you are setting up a Reddit account and agree to our <a>User Agreement</a> and <a>Privacy Policy</a>. 
+            </p>
+            
 
-            <div class="small-font gap-bottom-bigger">
-                <p>
-                    By continuing, you are setting up a Reddit account and agree to our <a>User Agreement</a> and <a>Privacy Policy</a>. 
-                </p>
-            </div>
-
-            <div class="form-fields-container gap-bottom">
-                <div class="input-container">
-                    <label for="login-username">
-                        <input id="login-username" type="text" placeholder="Username" th:field="*{username}">
+            <div class="form__group">
+                <div class="form__field">
+                    <label for="login-username" class="form__label">
+                        <input id="login-username" class="form__input" type="text" placeholder="Username" th:field="*{username}">
                     </label>
                 </div>
-                <div class="input-container" style="margin-bottom: 1rem;">
-                    <label for="login-password">
-                        <input id="login-password" type="password" placeholder="Password">
+                <div class="form__field">
+                    <label for="login-password" class="form__label">
+                        <input id="login-password" class="form__input" type="password" placeholder="Password">
                     </label>
                 </div>
 
-                <div class="small-font gap-bottom">
-                    <span>Forgot your <span class="prominent-link">username</span> or <span class="prominent-link">password</span>?</span>
-                </div>
+                
+                <span class="form__text form__text--gap-bottom">Forgot your <span class="form__link">username</span> or <span class="form__link">password</span>?</span>
+                
 
-                <div class="input-container justify-center">
-                    <label for="login-button" class="submit-button-label">
-                        <input id="login-button" class="primary-button" type="submit" value="Log In">
+                <div class="form__field form__field--justify-center">
+                    <label for="login-button" class="form__label--submit">
+                        <input id="login-button" class="form__input form__input--submit form__input--submit-hover" type="submit" value="Log In">
                     </label>
                 </div>
             </div>
 
-            <div class="small-font">
-                <span>New to Reddit? <a id="show-signup-form" class="prominent-link" href="register">Sign Up</a></span>
-            </div>
+            <span class="form__text">New to Reddit? <a class="form__link" href="register">Sign Up</a></span>
+            
         </form>
     </main>
 </body>

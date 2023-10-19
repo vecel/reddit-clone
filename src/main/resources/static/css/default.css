@@ -9,6 +9,8 @@
     
     --primary-bright: #ffffff;
     --secondary-bright: #dddddd;
+
+    --small-font: 0.85rem;
 }
 
 body {
@@ -82,3 +84,4 @@ input {
 .gap-right {
     margin-right: 0.5rem;
 }
+

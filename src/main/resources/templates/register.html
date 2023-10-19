@@ -4,70 +4,67 @@
     <meta charset="UTF-8">
 	<title>Reddit Clone</title>
 	<!--sciezka vscode-->
-	<!-- <link rel="stylesheet" type="text/css" href="../static/css/default.css">
-	<link rel="stylesheet" type="text/css" href="../static/css/login.css"> -->
+	<link rel="stylesheet" type="text/css" href="../static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/login.css">
 	<!--sciezka eclipse-->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/default.css}"> 
-	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+	<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}"> 
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"> -->
 	
     <!--sciezka vscode-->
-    <!-- <script src="../static/js/register.js" defer></script> -->
+    <script src="../static/js/register.js" defer></script>
 
     <!--sciezka eclipse-->
-	<script src="/js/register.js" defer></script>
+	<!-- <script src="/js/register.js" defer></script> -->
 </head>
 <body>
-    <main>
-        <form id="signup" action="#" th:action="@{/register}" th:method="post" th:object="${userDto}">
-            <div>
-                <span class="title-font">Sign Up</span>
-            </div>
+    <main class="main">
+        <form class="form" action="#" th:action="@{/register}" th:method="post" th:object="${userDto}">
+            <span class="form__title">
+                Sign Up
+            </span>
 
-            <div class="small-font gap-bottom">
-                <p>
-                    By continuing, you are setting up a Reddit account and agree to our <a>User Agreement</a> and <a>Privacy Policy</a>. 
-                </p>
-            </div>
+            <p class="form__text form__text--gap-bottom">
+                By continuing, you are setting up a Reddit account and agree to our <a>User Agreement</a> and <a>Privacy Policy</a>. 
+            </p>
 
-            <div class="small-font gap-bottom">
-                <label for="notifications"><input id="notifications" type="checkbox">I agree to get emails about cool stuff on Reddit </label>
-            </div>
+            <label for="notifications" class="form__label-newsletter">
+                <input id="notifications" type="checkbox">I agree to get emails about cool stuff on Reddit 
+            </label>
 
-            <div class="form-fields-container gap-bottom">
-				<div class="input-container">
-                    <label for="signup-username">
-                        <input id="signup-username" type="text" placeholder="Username" th:field="*{username}" required autocomplete="new-password" >
+            <div class="form__group">
+				<div class="form__field">
+                    <label for="signup-username" class="form__label">
+                        <input id="signup-username" class="form__input" type="text" placeholder="Username" th:field="*{username}" required autocomplete="new-password" >
                     </label>
                 </div>
-                <p class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-                <div class="input-container">
-                    <label for="signup-email">
-                        <input id="signup-email" type="email" placeholder="Email" th:field="*{email}" required autocomplete="new-password">
+                <p class="form__error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                <div class="form__field">
+                    <label for="signup-email" class="form__label">
+                        <input id="signup-email" class="form__input" type="email" placeholder="Email" th:field="*{email}" required autocomplete="new-password">
                     </label>
                 </div>
-                <p class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-                <div class="input-container">
-                    <label for="signup-password">
-                        <input id="signup-password" type="password" placeholder="Password" th:field="*{password}" required autocomplete="new-password">
+                <p class="form__error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                <div class="form__field">
+                    <label for="signup-password" class="form__label">
+                        <input id="signup-password" class="form__input" type="password" placeholder="Password" th:field="*{password}" required autocomplete="new-password">
                     </label>
                 </div>
-                <p class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-                <div class="input-container">
-                    <label for="confirm-signup-password">
-                        <input id="confirm-signup-password" type="password" placeholder="Confirm password" th:field="*{passwordMatch}" required autocomplete="new-password">
+                <p class="form__error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                <div class="form__field">
+                    <label for="confirm-signup-password" class="form__label">
+                        <input id="confirm-signup-password" class="form__input" type="password" placeholder="Confirm password" th:field="*{passwordMatch}" required autocomplete="new-password">
                     </label>
                 </div>
-                <p class="error-message" th:if="${#fields.hasErrors('global')}" th:each="err : ${#fields.errors('global')}" th:text="${err}"></p>
-                <div class="input-container justify-center">
-                    <label for="signup-button" class="submit-button-label">
-                        <input id="signup-button" class="primary-button" type="submit" value="Sign Up">
+                <p class="form__error-message" th:if="${#fields.hasErrors('global')}" th:each="err : ${#fields.errors('global')}" th:text="${err}"></p>
+                <div class="form__field form__field--justify-center">
+                    <label for="signup-button" class="form__label--submit">
+                        <input id="signup-button" class="form__input form__input--submit form__input--submit-hover" type="submit" value="Sign Up">
                     </label>
                 </div>
             </div>
 
-            <div class="small-font">
-                <span>Already a redditor? <a id="show-login-form" class="prominent-link" href="login">Log in</a></span>
-            </div>
+            <span class="form__text">Already a redditor? <a class="form__link" href="login">Log in</a></span>
+            
         </form>
 
     </main>
