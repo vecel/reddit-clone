@@ -12,7 +12,7 @@
 </head>
 <body>
     <main class="main">
-        <form class="form" th:action="@{/login}" th:method="post" th:object="${user}">
+        <form class="form" th:action="@{/login}" th:method="post" th:object="${userDto}">
             
             <span class="form__title">Log In</span>
         
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form__field">
                     <label for="login-password" class="form__label">
-                        <input id="login-password" class="form__input" type="password" placeholder="Password">
+                        <input id="login-password" class="form__input" type="password" placeholder="Password" th:field="*{password}">
                     </label>
                 </div>
 
