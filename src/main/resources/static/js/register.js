@@ -4,7 +4,6 @@ const password = document.getElementById("signup-password")
 const confirmationPassword = document.getElementById("confirm-signup-password")
 
 
-
 username.addEventListener("input", (event) => {
 	if(username.value.length < 4) {
 		username.setCustomValidity("Username must be at least 4 characters long.")

@@ -40,6 +40,7 @@ public class LoginController {
 				return "redirect:/";
 			}
 			System.out.println("Nie znaleziono usera w bazie");
+			
 		} catch (DuplicateUsernameException e) {
 			e.printStackTrace();
 			System.err.println("Application should stop here, there is a problem with duplicate usernames in databse");
