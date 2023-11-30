@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpSession;
+import pl.karandysm.redditclone.constants.HttpSessionConstants;
+import pl.karandysm.redditclone.constants.ModelConstants;
 import pl.karandysm.redditclone.dto.UserDto;
 import pl.karandysm.redditclone.exceptions.DuplicateUsernameException;
 import pl.karandysm.redditclone.model.User;
@@ -25,18 +27,18 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public String displayForm(Model model) {
-		model.addAttribute("userDto", new UserDto());
+		model.addAttribute(ModelConstants.USER_DTO, new UserDto());
 		return "login";
 	}
 	
 	@PostMapping("/login")
-	public String submitForm(@ModelAttribute("userDto") UserDto userDto,
+	public String submitForm(@ModelAttribute(ModelConstants.USER_DTO) UserDto userDto,
 			HttpSession session) {
 		
 		try {
 			Optional<User> oUser = userService.validateUser(userDto.getUsername(), userDto.getPassword());
 			if (oUser.isPresent()) {
-				session.setAttribute("user", oUser.get());
+				session.setAttribute(HttpSessionConstants.USER, oUser.get());
 				return "redirect:/";
 			}
 			System.out.println("Nie znaleziono usera w bazie");

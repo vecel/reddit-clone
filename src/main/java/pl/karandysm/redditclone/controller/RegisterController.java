@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import pl.karandysm.redditclone.constants.HttpSessionConstants;
+import pl.karandysm.redditclone.constants.ModelConstants;
 import pl.karandysm.redditclone.dto.UserDto;
 import pl.karandysm.redditclone.exceptions.RegisterException;
 import pl.karandysm.redditclone.exceptions.UserExistsWithEmailException;
@@ -28,12 +29,12 @@ public class RegisterController {
 
 	@GetMapping("/register")
 	public String displayForm(Model model) {
-		model.addAttribute("userDto", new UserDto());
+		model.addAttribute(ModelConstants.USER_DTO, new UserDto());
 		return "register";
 	}
 
 	@PostMapping("/register")
-	public String submitForm(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult,
+	public String submitForm(@Valid @ModelAttribute(ModelConstants.USER_DTO) UserDto userDto, BindingResult bindingResult,
 			HttpSession session) {
 
 		if (bindingResult.hasErrors()) {
@@ -42,7 +43,7 @@ public class RegisterController {
 
 		try {
 			User user = userService.registerUser(userDto);
-			session.setAttribute("user", user);
+			session.setAttribute(HttpSessionConstants.USER, user);
 		} catch (UserExistsWithUsernameException e) {
 			bindingResult.rejectValue("username", "usernameTaken", e.getMessage());
 			return "register";

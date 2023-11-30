@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import jakarta.servlet.http.HttpSession;
+import pl.karandysm.redditclone.constants.HttpSessionConstants;
 
 @Controller
 public class IndexController {
@@ -15,7 +16,7 @@ public class IndexController {
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("user");
+		session.removeAttribute(HttpSessionConstants.USER);
 		return "redirect:/";
 	}
 
