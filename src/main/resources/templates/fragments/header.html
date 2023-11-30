@@ -23,7 +23,7 @@
 		<div th:if="${session.user != null}" class="header__user">
 			<span class="header__user-icon material-icons md-36">account_circle</span>
 			<span class="header__user-username" th:text="${session.user.getUsername()}"></span>
-			<span class="header__user-sign-out material-icons">logout</span>
+			<a class="header__user-sign-out material-icons" href="/logout">logout</a>
 		</div> 
 	</header>
 </body>
