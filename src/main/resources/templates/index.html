@@ -5,14 +5,16 @@
 	<meta charset="UTF-8">
 	<title>Reddit Clone</title>
 	<!--sciezka vscode-->
-	<!-- <link rel="stylesheet" type="text/css" href="../static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/default.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
-	<link rel="stylesheet" type="text/css" href="../static/css/material-icons.css"> -->
+	<link rel="stylesheet" type="text/css" href="../static/css/community-fragment-style.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/material-icons.css">
 
 	<!--sciezka eclipse-->
-	<link rel="stylesheet" type="text/css" href="/css/default.css">
+	<!-- <link rel="stylesheet" type="text/css" href="/css/default.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/css/material-icons.css">
+	<link rel="stylesheet" type="text/css" href="/css/community-fragment-style.css">
+	<link rel="stylesheet" type="text/css" href="/css/material-icons.css"> -->
 	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -21,6 +23,31 @@
 <body>
 
 	<header th:replace="~{fragments/header :: header}"></header>
+
+	<!-- Tymczasowy header -->
+	<header style="height: 64px; background-color: var(--primary-dark);"></header>
+	
+	<div class="main-container">
+		<aside></aside>
+
+		<main class="community">
+			<div class="community__header">
+				<div class="community__baner"></div>
+				<div class="community__logo"></div>
+				<div class="community__title">Społeczność o kotach</div>
+				<div class="community__description">
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beenLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been</p>
+				</div>
+				<div class="horizontal-line"></div>
+				<div class="community__stats">
+					<div class="community__stats-element">Members: 12</div>
+					<div class="community__stats-element">Posts: 25</div>
+				</div>
+				<div class="community__add-post community__add-post--hover"><span class="material-icons">add</span>Add post</div>
+			</div>
+		</main>
+	</div>
+	
 
 </body>
 
