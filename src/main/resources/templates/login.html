@@ -32,7 +32,7 @@
                         <input id="login-password" class="form__input" type="password" placeholder="Password" th:field="*{password}">
                     </label>
                 </div>
-
+				<p class="form__error-message" th:if="${param.error != null}">Invalid login details</p>
                 
                 <span class="form__text form__text--gap-bottom">Forgot your <span class="form__link">username</span> or <span class="form__link">password</span>?</span>
                 

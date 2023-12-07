@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +42,10 @@ public class LoginController {
 				session.setAttribute(HttpSessionConstants.USER, oUser.get());
 				return "redirect:/";
 			}
-			System.out.println("Nie znaleziono usera w bazie");
+			
+			// TODO dodać informację, że dane są niepoprawne
+			return "redirect:/login?error=true";
+//			System.out.println("Nie znaleziono usera w bazie");
 			
 		} catch (DuplicateUsernameException e) {
 			e.printStackTrace();

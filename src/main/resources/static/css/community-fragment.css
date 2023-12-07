@@ -1,14 +1,16 @@
 
 aside {
-    width: 288px;
+    width: 388px;
     height: calc(100vh - 64px);
+    background-color: blue;
 }
 
 .community {
     background-color: var(--secondary-dark);
     color: var(--secondary-bright);
-    width: 63vw;
+    width: 52vw;
     min-height: 10vh;
+    margin: 120px 0 0 96px;
 }
 
 .community__header {
@@ -16,7 +18,7 @@ aside {
 }
 
 .community__baner {
-    width: 100%;
+    width: 52vw;
     height: 96px;
     background-color: green;
 }
