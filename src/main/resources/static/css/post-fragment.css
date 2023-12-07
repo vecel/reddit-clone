@@ -1,0 +1,53 @@
+.post {
+    position: relative;
+    margin: 2rem;
+    /* background-color: blue; */
+}
+
+/* .post__community-logo {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-color: pink;
+    border-radius: 20px;
+}
+
+.post__community-title {
+    display: inline-block;
+    margin-left: 50px; 
+    color: var(--tertiary-bright);
+} */
+
+.post__header {
+    display: flex;
+}
+
+.post__header-text {
+    display: inline-block;
+    color: var(--tertiary-bright);
+}
+
+.post__header-text--end {
+    margin-left: auto;
+}
+
+.post__title {
+    font-size: large;
+    font-weight: bold;
+}
+
+.post__content {
+    overflow: hidden;
+    text-align: justify;
+}
+
+.post__stats {
+    display: flex;
+}
+
+.post__stats-element {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

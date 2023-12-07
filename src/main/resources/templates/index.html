@@ -5,16 +5,18 @@
 	<meta charset="UTF-8">
 	<title>Reddit Clone</title>
 	<!--sciezka vscode-->
-	<!-- <link rel="stylesheet" type="text/css" href="../static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/default.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/community-fragment.css">
-	<link rel="stylesheet" type="text/css" href="../static/css/material-icons.css"> -->
+	<link rel="stylesheet" type="text/css" href="../static/css/post-fragment.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/material-icons.css">
 
 	<!--sciezka eclipse-->
-	<link rel="stylesheet" type="text/css" href="/css/default.css">
+	<!-- <link rel="stylesheet" type="text/css" href="/css/default.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/css/community-fragment.css">
-	<link rel="stylesheet" type="text/css" href="/css/material-icons.css">
+	<link rel="stylesheet" type="text/css" href="/css/post-fragment.css">
+	<link rel="stylesheet" type="text/css" href="/css/material-icons.css"> -->
 	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -25,7 +27,7 @@
 	<header th:replace="~{fragments/header :: header}"></header>
 
 	<!-- Tymczasowy header -->
-	<!-- <header style="height: 64px; background-color: var(--primary-dark);"></header> -->
+	<header style="height: 64px; background-color: var(--primary-dark);"></header>
 	
 	<div class="main-container">
 		<aside></aside>
@@ -53,12 +55,37 @@
 					<div class="community__stats-element">Posts: 25</div>
 				</div>
 				<div class="community__add-post community__add-post--hover"><span class="material-icons">add</span>Add post</div>
+				<div class="horizontal-line"></div>
 			</div>
 
 			<div class="post">
-
+				<div class="post__header">
+					<div class="post__header-text">Kocifan</div>
+					<div class="post__header-text post__header-text--end">7h ago</div>
+				</div>
+				<div class="post__title">Funny cat</div>
+				<div class="post__content">Funny cats are the ultimate mood boosters. From their playful antics to unpredictable behavior, these furry comedians keep us entertained. Whether they're chasing laser dots, getting into mischievous antics, or simply making silly faces, funny cats have a unique talent for bringing joy and laughter into our lives. With their quirky personalities and hilarious expressions, they remind us to appreciate the lighter side of life.
+				</div>
+				<div class="post__stats">
+					<div class="post__stats-element">
+						<span class="material-icons">thumb_up_alt</span>
+						&nbsp
+						64
+					</div>
+					<div class="post__stats-element">
+						<span class="material-icons">thumb_down_alt</span>
+						&nbsp
+						8
+					</div>
+					<div class="post__stats-element">
+						<span class="material-icons">question_answer</span>
+						&nbsp
+						128
+					</div>
+				</div>
 			</div>
 		</main>
+
 	</div>
 	
 

@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+aside {
+    width: 388px;
+    height: calc(100vh - 64px);
+    background-color: blue;
+}
+
 .header {
     background-color: var(--primary-dark);
     padding: 0 1.5rem;
