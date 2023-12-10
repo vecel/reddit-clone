@@ -2,8 +2,8 @@
     background-color: var(--secondary-dark);
     color: var(--secondary-bright);
     width: 52vw;
-    min-height: 10vh;
     margin: 120px 0 0 96px;
+    overflow-y: scroll;
 }
 
 .community__header {

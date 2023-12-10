@@ -27,12 +27,12 @@
 	<header th:replace="~{fragments/header :: header}"></header>
 
 	<!-- Tymczasowy header -->
-	<header style="height: 64px; background-color: var(--primary-dark);"></header>
+	<header style="height: 64px; background-color: var(--primary-dark); position: sticky; top: 0; left: 0; z-index: 2;"></header>
 	
 	<div class="main-container">
 		<aside></aside>
 
-		<main class="community">
+		<div class="community">
 			<div class="community__header">
 				<div class="community__baner"></div>
 				<div class="community__logo"></div>
@@ -60,10 +60,10 @@
 
 			<div class="post">
 				<div class="post__header">
-					<div class="post__header-text">Kocifan</div>
-					<div class="post__header-text post__header-text--end">7h ago</div>
+					<span class="post__header-text">Kocifan</span>
+					<span class="post__header-text post__header-text--end">7h ago</span>
 				</div>
-				<div class="post__title">Funny cat</div>
+				<span class="post__title post__title--hover">Funny cat</span>
 				<div class="post__content">Funny cats are the ultimate mood boosters. From their playful antics to unpredictable behavior, these furry comedians keep us entertained. Whether they're chasing laser dots, getting into mischievous antics, or simply making silly faces, funny cats have a unique talent for bringing joy and laughter into our lives. With their quirky personalities and hilarious expressions, they remind us to appreciate the lighter side of life.
 				</div>
 				<div class="post__stats">
@@ -84,7 +84,34 @@
 					</div>
 				</div>
 			</div>
-		</main>
+
+			<div class="post">
+				<div class="post__header">
+					<span class="post__header-text">Kocifan</span>
+					<span class="post__header-text post__header-text--end">7h ago</span>
+				</div>
+				<span class="post__title post__title--hover">Funny cat</span>
+				<div class="post__content">Funny cats are the ultimate mood boosters. From their playful antics to unpredictable behavior, these furry comedians keep us entertained. Whether they're chasing laser dots, getting into mischievous antics, or simply making silly faces, funny cats have a unique talent for bringing joy and laughter into our lives. With their quirky personalities and hilarious expressions, they remind us to appreciate the lighter side of life.
+				</div>
+				<div class="post__stats">
+					<div class="post__stats-element">
+						<span class="material-icons">thumb_up_alt</span>
+						&nbsp
+						64
+					</div>
+					<div class="post__stats-element">
+						<span class="material-icons">thumb_down_alt</span>
+						&nbsp
+						8
+					</div>
+					<div class="post__stats-element">
+						<span class="material-icons">question_answer</span>
+						&nbsp
+						128
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
 	
