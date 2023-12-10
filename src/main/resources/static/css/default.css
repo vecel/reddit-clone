@@ -15,10 +15,10 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: var(--tertiary-dark);
+    background-color: var(--secondary-dark);
 }
 
 .view {
@@ -27,12 +27,14 @@ body {
     width: 52vw;
     margin: 120px 0 0 96px;
     overflow-y: scroll;
+    position: absolute;
+    top: 64px;
+    left: 388px;
 }
 
-aside {
-    width: 388px;
-    height: calc(100vh - 64px);
-    background-color: blue;
+.main-container {
+    display: flex;
+    flex-direction: row;
 }
 
 h2 {
