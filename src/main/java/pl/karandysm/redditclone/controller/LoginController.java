@@ -43,16 +43,14 @@ public class LoginController {
 				return "redirect:/";
 			}
 			
-			// TODO dodać informację, że dane są niepoprawne
 			return "redirect:/login?error=true";
-//			System.out.println("Nie znaleziono usera w bazie");
 			
 		} catch (DuplicateUsernameException e) {
 			e.printStackTrace();
 			System.err.println("Application should stop here, there is a problem with duplicate usernames in databse");
 		}
 		
-		return "login";
+		return "redirect:/login?error=true";
 	}
 	
 }

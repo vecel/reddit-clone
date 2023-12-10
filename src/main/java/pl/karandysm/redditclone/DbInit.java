@@ -2,6 +2,7 @@ package pl.karandysm.redditclone;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -41,8 +42,8 @@ public class DbInit implements CommandLineRunner {
 	}
 	
 	private void initUsers() {
-		userRepository.saveAll(List.of(new User("testuser", "test.test@gmail.com", 2137),
-				new User("admin", "admin.admin@gmail.com", 1)));
+		userRepository.saveAll(List.of(new User("testuser", "test.test@gmail.com", Objects.hash("2137")),
+				new User("admin", "admin.admin@gmail.com", Objects.hash("1"))));
 	}
 	
 	private void initCommunities() {
