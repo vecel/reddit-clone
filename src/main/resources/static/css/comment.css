@@ -1,0 +1,33 @@
+.comment {
+    padding: 0 2rem;
+    display: grid;
+    grid-template: 36px 1fr / 36px 1fr;
+    font-size: 0.9rem;
+}
+
+.comment__owner-logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    background-color: greenyellow;
+    margin: 4px 0;
+}
+
+.comment__info {
+    display: flex;
+    align-items: center;
+}
+
+.comment__info-text {
+    color: var(--tertiary-bright);
+}
+
+.comment__info-text--end {
+    margin-left: auto;
+}
+
+.comment__content {
+    text-align: justify;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}

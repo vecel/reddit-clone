@@ -21,6 +21,14 @@ body {
     background-color: var(--tertiary-dark);
 }
 
+.view {
+    background-color: var(--secondary-dark);
+    color: var(--secondary-bright);
+    width: 52vw;
+    margin: 120px 0 0 96px;
+    overflow-y: scroll;
+}
+
 h2 {
     margin: 0;
 }
