@@ -3,6 +3,7 @@
     background-color: var(--primary-dark);
     padding: 0 1.5rem;
     height: 64px;
+    width: calc(100vw - 3rem);
     display: flex;
     position: fixed;
     top: 0;
