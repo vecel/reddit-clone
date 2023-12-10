@@ -29,6 +29,12 @@ body {
     overflow-y: scroll;
 }
 
+aside {
+    width: 388px;
+    height: calc(100vh - 64px);
+    background-color: blue;
+}
+
 h2 {
     margin: 0;
 }
