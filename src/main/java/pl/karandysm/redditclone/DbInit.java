@@ -1,6 +1,7 @@
 package pl.karandysm.redditclone;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,23 +43,24 @@ public class DbInit implements CommandLineRunner {
 	}
 	
 	private void initUsers() {
-		userRepository.saveAll(List.of(new User("testuser", "test.test@gmail.com", Objects.hash("2137")),
+		userRepository.saveAll(Arrays.asList(new User("testuser", "test.test@gmail.com", Objects.hash("2137")),
 				new User("admin", "admin.admin@gmail.com", Objects.hash("1"))));
 	}
 	
 	private void initCommunities() {
-		communityRepository.saveAll(List.of(new Community("Koty", "To jest community o kotach"),
+		communityRepository.saveAll(Arrays.asList(new Community("Koty", "To jest community o kotach"),
 				new Community("Community z uzytkownikami", "Lorem ipsum dolor set amet",
-						new ArrayList<Long>(List.of((long) 1, (long) 2, (long) 6)))));
+						new ArrayList<Long>(List.of((long) 1, (long) 2, (long) 6))),
+				new Community("Psy", "Tu sa psy")));
 	}
 	
 	private void initPosts() {
-		postRepository.saveAll(List.of(new Post("Koty", "To jest post o kotach", (long) 1, (long) 1),
+		postRepository.saveAll(Arrays.asList(new Post("Koty", "To jest post o kotach", (long) 1, (long) 1),
 				new Post("Psy", "Psy sa lepsze haha", (long) 1, (long) 2)));
 	}
 	
 	private void initComments() {
-		commentRepository.saveAll(List.of(new Comment((long) 1, (long) 2, "Nie masz racji")));
+		commentRepository.saveAll(Arrays.asList(new Comment((long) 1, (long) 2, "Nie masz racji")));
 	}
 
 }

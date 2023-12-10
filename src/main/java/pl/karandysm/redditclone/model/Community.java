@@ -21,6 +21,10 @@ public class Community {
 	private List<Long> memberIds;
 	private String description;
 	private LocalDate creationDate;
+	
+	public Community() {
+		super();
+	}
 
 	public Community(String communityName, String description) {
 		super();

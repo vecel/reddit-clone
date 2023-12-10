@@ -11,4 +11,5 @@ import pl.karandysm.redditclone.model.Community;
 public interface CommunityRepository extends JpaRepository<Community, Long> {
 	
 	List<Community> findByCommunityName(String communityName);
+	
 }

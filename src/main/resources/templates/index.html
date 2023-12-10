@@ -5,22 +5,22 @@
 	<meta charset="UTF-8">
 	<title>Reddit Clone</title>
 	<!--sciezka vscode-->
-	<link rel="stylesheet" type="text/css" href="../static/css/default.css">
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/default.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/header.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/community.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/post.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/comment.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/sidebar.css">
-	<link rel="stylesheet" type="text/css" href="../static/css/material-icons.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/material-icons.css"> -->
 
 	<!--sciezka eclipse-->
-	<!-- <link rel="stylesheet" type="text/css" href="/css/default.css">
+	<link rel="stylesheet" type="text/css" href="/css/default.css">
 	<link rel="stylesheet" type="text/css" href="/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/css/community.css">
 	<link rel="stylesheet" type="text/css" href="/css/post.css">
 	<link rel="stylesheet" type="text/css" href="/css/comment.css">
 	<link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-	<link rel="stylesheet" type="text/css" href="/css/material-icons.css"> -->
+	<link rel="stylesheet" type="text/css" href="/css/material-icons.css">
 	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -31,38 +31,17 @@
 	<header th:replace="~{fragments/header :: header}"></header>
 
 	<!-- Tymczasowy header -->
-	<header style="height: 64px; background-color: var(--primary-dark); position: sticky; top: 0; left: 0; z-index: 2;"></header>
+	<!-- <header style="height: 64px; background-color: var(--primary-dark); position: sticky; top: 0; left: 0; z-index: 2;"></header> -->
 	
 	<!-- <div class="main-container"> -->
 		<div class="sidebar">
 			<div class="sidebar__list">
 				<span class="sidebar__list-title">COMMUNITIES</span>
-				<div class="sidebar__list-content">
-					<div class="sidebar__list-item sidebar__list-item--hover">
+				<div class="sidebar__list-content" th:each="c : ${communitiesList}">
+					<a class="sidebar__list-item sidebar__list-item--hover" th:href="@{/community(name=${c.communityName})}">
 						<div class="sidebar__list-item-logo"></div>
-						&nbsp
-						Cats
-					</div>
-					<div class="sidebar__list-item sidebar__list-item--hover">
-						<div class="sidebar__list-item-logo"></div>
-						&nbsp
-						Dogs
-					</div>
-					<div class="sidebar__list-item sidebar__list-item--hover">
-						<div class="sidebar__list-item-logo"></div>
-						&nbsp
-						Birds
-					</div>
-					<div class="sidebar__list-item sidebar__list-item--hover">
-						<div class="sidebar__list-item-logo"></div>
-						&nbsp
-						Birds
-					</div>
-					<div class="sidebar__list-item sidebar__list-item--hover">
-						<div class="sidebar__list-item-logo"></div>
-						&nbsp
-						Birds
-					</div>
+						<span class="sidebar__list-item-text" th:text="${c.communityName}"></span>
+					</a>
 				</div>
 			</div>
 		</div>
