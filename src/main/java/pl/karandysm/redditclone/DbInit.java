@@ -50,7 +50,8 @@ public class DbInit implements CommandLineRunner {
 	private void initCommunities() {
 		communityRepository.saveAll(Arrays.asList(new Community("Koty", "To jest community o kotach"),
 				new Community("Community z uzytkownikami", "Lorem ipsum dolor set amet",
-						new ArrayList<Long>(List.of((long) 1, (long) 2, (long) 6))),
+						new ArrayList<Long>(List.of((long) 1, (long) 2, (long) 6)),
+						new ArrayList<Long>(List.of((long) 2, (long) 1, (long) 3, (long) 7))),
 				new Community("Psy", "Tu sa psy")));
 	}
 	

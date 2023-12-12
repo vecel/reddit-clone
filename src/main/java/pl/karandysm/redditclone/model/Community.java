@@ -1,6 +1,7 @@
 package pl.karandysm.redditclone.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -30,13 +31,16 @@ public class Community {
 		super();
 		this.communityName = communityName;
 		this.description = description;
+		this.postIds = new ArrayList<>();
+		this.memberIds = new ArrayList<>();
 		this.creationDate = LocalDate.now();
 	}
 	
-	public Community(String communityName, String description, List<Long> memberIds) {
+	public Community(String communityName, String description, List<Long> postIds, List<Long> memberIds) {
 		super();
 		this.communityName = communityName;
 		this.description = description;
+		this.postIds = postIds;
 		this.memberIds = memberIds;
 		this.creationDate = LocalDate.now();
 	}

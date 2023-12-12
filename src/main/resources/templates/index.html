@@ -92,12 +92,12 @@
 		</div> -->
 
 		<div class="view">
-			<div class="community">
+			<div class="community" th:if="${community != null}">
 				<div class="community__baner"></div>
 				<div class="community__logo"></div>
-				<div class="community__title">Społeczność o kotach</div>
+				<div class="community__title" th:text="${community.communityName}"></div>
 				<div class="community__description">
-					<p>Cats are fascinating creatures. With their graceful movements and curious nature, they effortlessly captivate our hearts. Whether they are lounging lazily in the sun or chasing after imaginary prey, their charm is undeniable.
+					<p th:text="${community.description}">Cats are fascinating creatures. With their graceful movements and curious nature, they effortlessly captivate our hearts. Whether they are lounging lazily in the sun or chasing after imaginary prey, their charm is undeniable.
 
 						The domestic cat, scientifically known as Felis catus, has been a companion to humans for centuries. These independent and sometimes mysterious animals have a way of making themselves at home in our lives. From the playful antics of kittens to the regal demeanor of older cats, each feline has a unique personality.
 						
@@ -110,8 +110,8 @@
 				</div>
 				<div class="horizontal-line"></div>
 				<div class="community__stats">
-					<div class="community__stats-element">Members: 12</div>
-					<div class="community__stats-element">Posts: 25</div>
+					<div class="community__stats-element" th:text="'Members: ' + ${community.memberIds.size}"></div>
+					<div class="community__stats-element" th:text="'Posts: ' + ${community.postIds.size}"></div>
 				</div>
 				<div class="community__add-post community__add-post--hover"><span class="material-icons">add</span>Add post</div>
 				<div class="horizontal-line"></div>
