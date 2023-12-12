@@ -18,10 +18,10 @@ public class Community {
 	private Long id;
 
 	private String communityName;
-	private List<Long> postIds;
-	private List<Long> memberIds;
 	private String description;
-	private LocalDate creationDate;
+	private List<Long> postIds = new ArrayList<>();
+	private List<Long> memberIds = new ArrayList<>();
+	private LocalDate creationDate = LocalDate.now();
 	
 	public Community() {
 		super();
@@ -31,9 +31,6 @@ public class Community {
 		super();
 		this.communityName = communityName;
 		this.description = description;
-		this.postIds = new ArrayList<>();
-		this.memberIds = new ArrayList<>();
-		this.creationDate = LocalDate.now();
 	}
 	
 	public Community(String communityName, String description, List<Long> postIds, List<Long> memberIds) {
@@ -42,7 +39,6 @@ public class Community {
 		this.description = description;
 		this.postIds = postIds;
 		this.memberIds = memberIds;
-		this.creationDate = LocalDate.now();
 	}
 	
 

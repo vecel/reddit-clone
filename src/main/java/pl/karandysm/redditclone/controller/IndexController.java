@@ -1,5 +1,6 @@
 package pl.karandysm.redditclone.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 import pl.karandysm.redditclone.constants.HttpSessionConstants;
 import pl.karandysm.redditclone.model.Community;
+import pl.karandysm.redditclone.model.Post;
 import pl.karandysm.redditclone.service.CommunityService;
+import pl.karandysm.redditclone.service.PostService;
 
 @Controller
 public class IndexController {
 
 	@Autowired
 	private CommunityService communityService;
+	
+	@Autowired
+	private PostService postService;
 
 	@GetMapping("/")
 	public String index(Model model) {
@@ -39,7 +45,9 @@ public class IndexController {
 			// placeholder
 			return "redirect:/error";
 		}
+		List<Post> posts = postService.getPostsForCommunityById(oCommunity.get().getId());
 		model.addAttribute("community", oCommunity.get());
+		model.addAttribute("posts", posts);
 		return "index";
 	}
 

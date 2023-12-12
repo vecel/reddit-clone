@@ -1,6 +1,7 @@
 package pl.karandysm.redditclone.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -21,9 +22,13 @@ public class Post {
 	private Long communityId;
 	private Long authorId;
 	private LocalDate creationDate;
-	private List<Long> upvoterIds;
-	private List<Long> downvoterIds;
-	private List<Long> commentIds;
+	private List<Long> upvoterIds = new ArrayList<>();
+	private List<Long> downvoterIds = new ArrayList<>();
+	private List<Long> commentIds = new ArrayList<>();
+	
+	public Post() {
+	
+	}
 
 	public Post(String title, String content, Long communityId, Long authorId) {
 		super();
