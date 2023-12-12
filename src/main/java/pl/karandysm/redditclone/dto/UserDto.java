@@ -25,6 +25,22 @@ public class UserDto {
 
 	private String passwordMatch;
 
+	public UserDto() {
+		super();
+	}
+
+	public UserDto(
+			@NotNull(message = "Username must not be null") @Size(min = 4, message = "Username must be at least 4 characters long") String username,
+			@NotNull(message = "Email must not be null") @Email(message = "Invalid email adress") String email,
+			@NotNull(message = "Password must not be empty") @Size(min = 8, message = "Password must be at least 8 characters long") @Pattern(regexp = "^(?=.*[A-Z]).{8,}$", message = "Password must contain at least one capital letter") @Pattern(regexp = "^(?=.*\\d).{8,}$", message = "Password must contain at least one digit") String password,
+			String passwordMatch) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.passwordMatch = passwordMatch;
+	}
+
 	public String getUsername() {
 		return username;
 	}
