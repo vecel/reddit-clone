@@ -17,4 +17,8 @@ public class PostService {
 	public List<Post> getPostsForCommunityById(Long id) {
 		return postRepository.findByCommunityId(id);
 	}
+	
+	public Post addPost(Post post) {
+		return postRepository.save(post);
+	}
 }

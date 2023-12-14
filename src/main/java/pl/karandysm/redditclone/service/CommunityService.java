@@ -26,4 +26,8 @@ public class CommunityService {
 		}
 		return Optional.empty();
 	}
+	
+	public Community addCommunity(Community community) {
+		return communityRepository.save(community);
+	}
 }
