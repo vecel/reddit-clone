@@ -4,9 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,7 +18,7 @@ import jakarta.persistence.Table;
 public class Post {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String title;
@@ -22,6 +26,15 @@ public class Post {
 	private Long communityId;
 	private Long authorId;
 	private LocalDate creationDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "communityId", insertable = false, updatable = false)
+	private Community community;
+	
+	@ManyToOne
+	@JoinColumn(name = "authorId", insertable = false, updatable = false)
+	private User author;
+	
 	private List<Long> upvoterIds = new ArrayList<>();
 	private List<Long> downvoterIds = new ArrayList<>();
 	private List<Long> commentIds = new ArrayList<>();
@@ -111,4 +124,21 @@ public class Post {
 		this.commentIds = commentIds;
 	}
 
+	public Community getCommunity() {
+		return community;
+	}
+
+	public void setCommunity(Community community) {
+		this.community = community;
+	}
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+
+	
 }

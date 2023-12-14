@@ -36,15 +36,17 @@ public class DbInit implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		initUsers();
 		initCommunities();
+		initUsers();
 		initPosts();
 		initComments();
 	}
 	
 	private void initUsers() {
-		userRepository.saveAll(Arrays.asList(new User("testuser", "test.test@gmail.com", Objects.hash("2137")),
-				new User("admin", "admin.admin@gmail.com", Objects.hash("1"))));
+		userRepository.saveAll(Arrays.asList(
+				new User("testuser", "test.test@gmail.com", Objects.hash("2137")),
+				new User("admin", "admin.admin@gmail.com", Objects.hash("1")),
+				new User("mateusz", "mateusz@gmail.com", Objects.hash("mateusz"))));
 	}
 	
 	private void initCommunities() {
@@ -62,7 +64,7 @@ public class DbInit implements CommandLineRunner {
 				new Post("Post koty 1", "To jest post o kotach", (long) 1, (long) 1),
 				new Post("Post koty 2", "Psy sa lepsze", (long) 1, (long) 2),
 				new Post("Post koty 3", "Nie sa", (long) 1, (long) 1),
-				new Post("Post psy 1", "To jest post o psach", (long) 2, (long) 5),
+				new Post("Post psy 1", "To jest post o psach", (long) 2, (long) 1),
 				new Post("Post psy 2", "Psy sa lepsze haha", (long) 2, (long) 3)));
 	}
 	

@@ -97,16 +97,7 @@
 				<div class="community__logo"></div>
 				<div class="community__title" th:text="${community.communityName}"></div>
 				<div class="community__description">
-					<p th:text="${community.description}">Cats are fascinating creatures. With their graceful movements and curious nature, they effortlessly captivate our hearts. Whether they are lounging lazily in the sun or chasing after imaginary prey, their charm is undeniable.
-
-						The domestic cat, scientifically known as Felis catus, has been a companion to humans for centuries. These independent and sometimes mysterious animals have a way of making themselves at home in our lives. From the playful antics of kittens to the regal demeanor of older cats, each feline has a unique personality.
-						
-						Cats are known for their agility and keen senses. Their whiskers twitch as they navigate the world around them, and their soft purring provides comfort to those lucky enough to be in their presence. A cat's eyes, with their slitted pupils, reflect a sense of mystery and intelligence.
-						
-						In literature and folklore, cats often symbolize different qualities, ranging from cunning and independence to luck and mystery. Stories of magical or talking cats have been told across cultures, adding to the allure that surrounds these enigmatic creatures.
-						
-						Whether you're a cat owner or an admirer of these beautiful animals, the charm of cats is universal. Their presence brings joy and warmth to countless households, making them beloved companions and inspiring creativity in the hearts of many.
-						</p>
+					<p th:text="${community.description}"></p>
 				</div>
 				<div class="horizontal-line"></div>
 				<div class="community__stats">
@@ -120,7 +111,7 @@
 			<div class="posts-container" th:each="p : ${posts}">
 				<div class="post">
 					<div class="post__header-short">
-						<span class="post__header-text">Podmien to na autora</span>
+						<span class="post__header-text" th:text="${p.author.username}"></span>
 						<span class="post__header-text post__header-text--end">7h ago</span>
 					</div>
 					<span class="post__title post__title--hover" th:text="${p.title}"></span>

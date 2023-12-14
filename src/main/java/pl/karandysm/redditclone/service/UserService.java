@@ -3,6 +3,7 @@ package pl.karandysm.redditclone.service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import pl.karandysm.redditclone.exceptions.DuplicateUsernameException;
 import pl.karandysm.redditclone.exceptions.RegisterException;
 import pl.karandysm.redditclone.exceptions.UserExistsWithEmailException;
 import pl.karandysm.redditclone.exceptions.UserExistsWithUsernameException;
+import pl.karandysm.redditclone.model.Post;
 import pl.karandysm.redditclone.model.User;
 import pl.karandysm.redditclone.repository.UserRepository;
 
@@ -49,6 +51,11 @@ public class UserService {
 		}
 		// Naruszam zasade DRY, bo nie mam ochoty teraz rozkminiac jak ja obejsc
 		return Optional.empty();
+	}
+	
+	public List<User> getPostAuthors(List<Post> posts) {
+		List<Long> ids = posts.stream().map(p -> p.getAuthorId()).collect(Collectors.toList());
+		return userRepository.findByIdIn(ids);
 	}
 	
 	private User createUserFromDto(UserDto userDto) {
