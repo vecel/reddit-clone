@@ -3,9 +3,12 @@ package pl.karandysm.redditclone.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,7 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "POSTS")
+@Table(name = "Posts")
 public class Post {
 
 	@Id
@@ -23,32 +26,26 @@ public class Post {
 
 	private String title;
 	private String content;
-	private Long communityId;
-	private Long authorId;
 	private LocalDate creationDate;
-	
-	@ManyToOne
-	@JoinColumn(name = "communityId", insertable = false, updatable = false)
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Community community;
-	
-	@ManyToOne
-	@JoinColumn(name = "authorId", insertable = false, updatable = false)
-	private User author;
-	
+
+	// ponizsze do zmiany
 	private List<Long> upvoterIds = new ArrayList<>();
 	private List<Long> downvoterIds = new ArrayList<>();
 	private List<Long> commentIds = new ArrayList<>();
-	
+
 	public Post() {
-	
+
 	}
 
-	public Post(String title, String content, Long communityId, Long authorId) {
+	public Post(String title, String content, Community community) {
 		super();
 		this.title = title;
 		this.content = content;
-		this.communityId = communityId;
-		this.authorId = authorId;
+		this.community = community;
+//		this.author = author;
 		this.creationDate = LocalDate.now();
 	}
 
@@ -76,20 +73,12 @@ public class Post {
 		this.content = content;
 	}
 
-	public Long getCommunityId() {
-		return communityId;
+	public Community getCommunity() {
+		return community;
 	}
 
-	public void setCommunityId(Long communityId) {
-		this.communityId = communityId;
-	}
-
-	public Long getAuthorId() {
-		return authorId;
-	}
-
-	public void setAuthorId(Long authorId) {
-		this.authorId = authorId;
+	public void setCommunity(Community community) {
+		this.community = community;
 	}
 
 	public LocalDate getCreationDate() {
@@ -124,21 +113,23 @@ public class Post {
 		this.commentIds = commentIds;
 	}
 
-	public Community getCommunity() {
-		return community;
+	@Override
+	public int hashCode() {
+		return Objects.hash(community, content, creationDate, id, title);
 	}
 
-	public void setCommunity(Community community) {
-		this.community = community;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Post other = (Post) obj;
+		return Objects.equals(community, other.community)
+				&& Objects.equals(content, other.content) && Objects.equals(creationDate, other.creationDate)
+				&& Objects.equals(id, other.id) && Objects.equals(title, other.title);
 	}
 
-	public User getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-
-	
 }

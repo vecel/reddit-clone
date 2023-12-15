@@ -1,8 +1,7 @@
 package pl.karandysm.redditclone;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
 
 import org.springframework.boot.CommandLineRunner;
@@ -36,40 +35,36 @@ public class DbInit implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		initCommunities();
-		initUsers();
-		initPosts();
-		initComments();
-	}
-	
-	private void initUsers() {
-		userRepository.saveAll(Arrays.asList(
-				new User("testuser", "test.test@gmail.com", Objects.hash("2137")),
-				new User("admin", "admin.admin@gmail.com", Objects.hash("1")),
-				new User("mateusz", "mateusz@gmail.com", Objects.hash("mateusz"))));
-	}
-	
-	private void initCommunities() {
-		communityRepository.saveAll(Arrays.asList(
-				new Community("Koty", "To jest community o kotach", 
-						new ArrayList<Long>(List.of((long) 1, (long) 2, (long) 4)),
-						new ArrayList<Long>(List.of((long) 1, (long) 2, (long) 3, (long) 4, (long) 6))),
-				new Community("Psy", "Tu sa psy",
-						new ArrayList<Long>(List.of((long) 3, (long) 5)),
-						new ArrayList<Long>(List.of((long) 1, (long) 2, (long) 3, (long) 5)))));
-	}
-	
-	private void initPosts() {
-		postRepository.saveAll(Arrays.asList(
-				new Post("Post koty 1", "To jest post o kotach", (long) 1, (long) 1),
-				new Post("Post koty 2", "Psy sa lepsze", (long) 1, (long) 2),
-				new Post("Post koty 3", "Nie sa", (long) 1, (long) 1),
-				new Post("Post psy 1", "To jest post o psach", (long) 2, (long) 1),
-				new Post("Post psy 2", "Psy sa lepsze haha", (long) 2, (long) 3)));
-	}
-	
-	private void initComments() {
-		commentRepository.saveAll(Arrays.asList(new Comment((long) 1, (long) 2, "Nie masz racji")));
+		User user1 = new User("testuser", "test.test@gmail.com", Objects.hash("2137"));
+		User user2 = new User("admin", "admin.admin@gmail.com", Objects.hash("1"));
+		User user3 = new User("mateusz", "mateusz@gmail.com", Objects.hash("mateusz"));
+
+		Community community1 = new Community("Koty", "To jest community o kotach");
+		Community community2 = new Community("Psy", "To jest community o psach");
+		
+		Post post1 = new Post("Post koty 1", "To jest post o kotach", community1);
+		Post post2 = new Post("Post koty 2", "Psy sa lepsze", community1);
+		Post post3 = new Post("Post koty 3", "Nie sa", community1);
+		Post post4 = new Post("Post psy 1", "To jest post o psach", community2);
+		Post post5 = new Post("Post psy 2", "Psy sa lepsze haha", community2);
+
+		user1.setCommunities(new HashSet<>(Arrays.asList(community1, community2)));
+		user2.setCommunities(new HashSet<>(Arrays.asList(community1)));
+		user3.setCommunities(new HashSet<>(Arrays.asList(community1, community2)));
+		
+		user1.setPosts(new HashSet<>(Arrays.asList(post1, post5)));
+		user2.setPosts(new HashSet<>(Arrays.asList(post2)));
+		user3.setPosts(new HashSet<>(Arrays.asList(post3, post4)));
+		
+		community1.setMembers(new HashSet<>(Arrays.asList(user1, user2, user3)));
+		community2.setMembers(new HashSet<>(Arrays.asList(user1, user3)));
+		
+		community1.setPosts(new HashSet<>(Arrays.asList(post1, post2, post3)));
+		community2.setPosts(new HashSet<>(Arrays.asList(post4, post5)));
+		
+		userRepository.saveAll(Arrays.asList(user1, user2, user3));
+		communityRepository.saveAll(Arrays.asList(community1, community2));
+		postRepository.saveAll(Arrays.asList(post1, post2, post3, post4, post5));
 	}
 
 }

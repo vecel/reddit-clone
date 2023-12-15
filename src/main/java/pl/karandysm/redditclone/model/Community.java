@@ -1,19 +1,21 @@
 package pl.karandysm.redditclone.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "COMMUNITIES")
+@Table(name = "Communities")
 public class Community {
 
 	@Id
@@ -23,11 +25,15 @@ public class Community {
 	private String communityName;
 	private String description;
 	private LocalDate creationDate = LocalDate.now();
-	
-	// pewnie zbedne - zastapic setem postow i userow
-	private List<Long> postIds = new ArrayList<>();
-	private List<Long> memberIds = new ArrayList<>();
-	
+
+	@OneToMany(mappedBy = "community",
+			cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH},
+			orphanRemoval = true)
+	private Set<Post> posts;
+
+	@ManyToMany
+	private Set<User> members;
+
 	public Community() {
 		super();
 	}
@@ -37,15 +43,14 @@ public class Community {
 		this.communityName = communityName;
 		this.description = description;
 	}
-	
-	public Community(String communityName, String description, List<Long> postIds, List<Long> memberIds) {
+
+	public Community(String communityName, String description, Set<Post> posts, Set<User> members) {
 		super();
 		this.communityName = communityName;
 		this.description = description;
-		this.postIds = postIds;
-		this.memberIds = memberIds;
+		this.posts = posts;
+		this.members = members;
 	}
-	
 
 	public Long getId() {
 		return id;
@@ -63,20 +68,20 @@ public class Community {
 		this.communityName = communityName;
 	}
 
-	public List<Long> getPostIds() {
-		return postIds;
+	public Set<Post> getPosts() {
+		return posts;
 	}
 
-	public void setPostIds(List<Long> postIds) {
-		this.postIds = postIds;
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
 	}
 
-	public List<Long> getMemberIds() {
-		return memberIds;
+	public Set<User> getMembers() {
+		return members;
 	}
 
-	public void setMemberIds(List<Long> memberIds) {
-		this.memberIds = memberIds;
+	public void setMembers(Set<User> members) {
+		this.members = members;
 	}
 
 	public String getDescription() {
@@ -93,6 +98,24 @@ public class Community {
 
 	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(communityName, creationDate, description, id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Community other = (Community) obj;
+		return Objects.equals(communityName, other.communityName) && Objects.equals(creationDate, other.creationDate)
+				&& Objects.equals(description, other.description) && Objects.equals(id, other.id);
 	}
 
 }

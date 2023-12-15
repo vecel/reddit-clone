@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.karandysm.redditclone.dto.UserDto;
 import pl.karandysm.redditclone.exceptions.DuplicateUsernameException;
@@ -33,7 +34,7 @@ public class UserService {
 		if (userRepository.existsByEmail(userDto.getEmail())) {
 			throw new UserExistsWithEmailException("Email " + userDto.getEmail() + messageEnding);
 		}
-		
+
 		return userRepository.save(this.createUserFromDto(userDto));
 	}
 
@@ -52,12 +53,7 @@ public class UserService {
 		// Naruszam zasade DRY, bo nie mam ochoty teraz rozkminiac jak ja obejsc
 		return Optional.empty();
 	}
-	
-	public List<User> getPostAuthors(List<Post> posts) {
-		List<Long> ids = posts.stream().map(p -> p.getAuthorId()).collect(Collectors.toList());
-		return userRepository.findByIdIn(ids);
-	}
-	
+
 	private User createUserFromDto(UserDto userDto) {
 		return new User(userDto.getUsername(), userDto.getEmail(), Objects.hash(userDto.getPassword()));
 	}

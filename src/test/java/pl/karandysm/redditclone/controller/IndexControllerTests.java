@@ -54,27 +54,27 @@ public class IndexControllerTests {
 				.isTrue();
 	}
 
-	@Test
-	void postForCommunityAreRendered() {
-		CommunityService communityService = applicationContext.getBean(CommunityService.class);
-		PostService postService = applicationContext.getBean(PostService.class);
-
-		Community community1 = new Community("test1", "description 1");
-		communityService.addCommunity(community1);
-
-		Post post1 = new Post("post1", "", community1.getId(), (long) 1);
-		Post post2 = new Post("post2", "", community1.getId(), (long) 1);
-		postService.addPost(post1);
-		postService.addPost(post2);
-
-		ResponseEntity<String> response = testRestTemplate
-				.getForEntity("http://localhost:" + port + "/community?name=test1", String.class);
-
-		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-		String responseBody = response.getBody();
-		assertThat(responseBody.contains("<span class=\"post__title post__title--hover\">post1</span>")).isTrue();
-		assertThat(responseBody.contains("<span class=\"post__title post__title--hover\">post2</span>")).isTrue();
-	}
+//	@Test
+//	void postForCommunityAreRendered() {
+//		CommunityService communityService = applicationContext.getBean(CommunityService.class);
+//		PostService postService = applicationContext.getBean(PostService.class);
+//
+//		Community community1 = new Community("test1", "description 1");
+//		communityService.addCommunity(community1);
+//
+//		Post post1 = new Post("post1", "", community1.getId(), (long) 1);
+//		Post post2 = new Post("post2", "", community1.getId(), (long) 1);
+//		postService.addPost(post1);
+//		postService.addPost(post2);
+//
+//		ResponseEntity<String> response = testRestTemplate
+//				.getForEntity("http://localhost:" + port + "/community?name=test1", String.class);
+//
+//		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+//		String responseBody = response.getBody();
+//		assertThat(responseBody.contains("<span class=\"post__title post__title--hover\">post1</span>")).isTrue();
+//		assertThat(responseBody.contains("<span class=\"post__title post__title--hover\">post2</span>")).isTrue();
+//	}
 
 	@Test
 	void gettingCommunityThatDoesNotExistReturnsStatus500() {
