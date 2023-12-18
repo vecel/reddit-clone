@@ -92,27 +92,14 @@
 		</div> -->
 
 		<div class="view">
-			<div class="community" th:if="${community != null}">
-				<div class="community__baner"></div>
-				<div class="community__logo"></div>
-				<div class="community__title" th:text="${community.communityName}"></div>
-				<div class="community__description">
-					<p th:text="${community.description}"></p>
-				</div>
-				<div class="horizontal-line"></div>
-				<div class="community__stats">
-					<div class="community__stats-element" th:text="'Members: ' + ${community.memberIds.size}"></div>
-					<div class="community__stats-element" th:text="'Posts: ' + ${community.postIds.size}"></div>
-				</div>
-				<div class="community__add-post community__add-post--hover"><span class="material-icons">add</span>Add post</div>
-				<div class="horizontal-line"></div>
-			</div>
+			<div th:replace="~{fragments/community :: community}"></div>
 			
+			<!-- widok dla wybranego community -->
 			<div class="posts-container" th:each="p : ${posts}">
 				<div class="post">
 					<div class="post__header-short">
 						<span class="post__header-text" th:text="${p.author.username}"></span>
-						<span class="post__header-text post__header-text--end">7h ago</span>
+						<span class="post__header-text post__header-text--end" th:text="${p.creationDate}">7h ago</span>
 					</div>
 					<span class="post__title post__title--hover" th:text="${p.title}"></span>
 					<div class="post__content" th:text="${p.content}"></div>
@@ -133,7 +120,42 @@
 							<span th:text="${p.commentIds.size}"></span>
 						</div>
 					</div>
-				</div>	
+				</div>
+			</div>
+			
+			<!-- domyslny widok - bez wybranego community -->
+			<div class="posts-container" th:each="p : ${postsDefaultView}">
+				<div class="post">
+					<div class="post__header">
+						<span class="post__owner-logo"></span>
+						<div class="post__header-info">
+							<div class="post__header-short">
+								<span class="post__header-text" th:text="${p.community.communityName}"></span>
+								<span class="post__header-text post__header-text--end" th:text="${p.creationDate}"></span>
+						</div>
+						<span class="post__header-text" th:text="${p.author.username}"></span>
+					</div>
+				</div>
+				<span class="post__title post__title--hover" th:text="${p.title}"></span>
+					<div class="post__content" th:text="${p.content}"></div>
+					<div class="post__stats">
+						<div class="post__stats-element">
+							<span class="material-icons">thumb_up_alt</span>
+							&nbsp
+							<span th:text="${p.upvoterIds.size}"></span>
+						</div>
+						<div class="post__stats-element">
+							<span class="material-icons">thumb_down_alt</span>
+							&nbsp
+							<span th:text="${p.downvoterIds.size}"></span>
+						</div>
+						<div class="post__stats-element">
+							<span class="material-icons">question_answer</span>
+							&nbsp
+							<span th:text="${p.commentIds.size}"></span>
+						</div>
+					</div>
+				</div>
 			</div>
 			
 		</div>

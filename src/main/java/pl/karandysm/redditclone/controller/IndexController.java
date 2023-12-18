@@ -32,6 +32,7 @@ public class IndexController {
 	@GetMapping("/")
 	public String index(Model model) {
 		addCommunitiesListToModel(model);
+		model.addAttribute("postsDefaultView", postService.findAll());
 		return "index";
 	}
 

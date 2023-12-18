@@ -53,7 +53,7 @@ public class UserService {
 		// Naruszam zasade DRY, bo nie mam ochoty teraz rozkminiac jak ja obejsc
 		return Optional.empty();
 	}
-
+	
 	private User createUserFromDto(UserDto userDto) {
 		return new User(userDto.getUsername(), userDto.getEmail(), Objects.hash(userDto.getPassword()));
 	}

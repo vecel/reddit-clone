@@ -42,11 +42,11 @@ public class DbInit implements CommandLineRunner {
 		Community community1 = new Community("Koty", "To jest community o kotach");
 		Community community2 = new Community("Psy", "To jest community o psach");
 		
-		Post post1 = new Post("Post koty 1", "To jest post o kotach", community1);
-		Post post2 = new Post("Post koty 2", "Psy sa lepsze", community1);
-		Post post3 = new Post("Post koty 3", "Nie sa", community1);
-		Post post4 = new Post("Post psy 1", "To jest post o psach", community2);
-		Post post5 = new Post("Post psy 2", "Psy sa lepsze haha", community2);
+		Post post1 = new Post("Post koty 1", "To jest post o kotach", community1, user1);
+		Post post2 = new Post("Post koty 2", "Psy sa lepsze", community1, user2);
+		Post post3 = new Post("Post koty 3", "Nie sa", community1, user3);
+		Post post4 = new Post("Post psy 1", "To jest post o psach", community2, user3);
+		Post post5 = new Post("Post psy 2", "Psy sa lepsze haha", community2, user1);
 
 		user1.setCommunities(new HashSet<>(Arrays.asList(community1, community2)));
 		user2.setCommunities(new HashSet<>(Arrays.asList(community1)));

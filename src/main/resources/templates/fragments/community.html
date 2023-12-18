@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<div th:fragment="community" class="community" th:if="${community != null}">
+		<div class="community__baner"></div>
+		<div class="community__logo"></div>
+		<div class="community__title" th:text="${community.communityName}"></div>
+		<div class="community__description">
+			<p th:text="${community.description}"></p>
+		</div>
+		<div class="horizontal-line"></div>
+		<div class="community__stats">
+			<div class="community__stats-element" th:text="'Members: ' + ${community.members.size}"></div>
+			<div class="community__stats-element" th:text="'Posts: ' + ${community.posts.size}"></div>
+		</div>
+		<div class="community__add-post community__add-post--hover"><span class="material-icons">add</span>Add post
+		</div>
+		<div class="horizontal-line"></div>
+	</div>
+</body>

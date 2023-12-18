@@ -31,6 +31,9 @@ public class Post {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Community community;
 
+	@ManyToOne
+	private User author;
+
 	// ponizsze do zmiany
 	private List<Long> upvoterIds = new ArrayList<>();
 	private List<Long> downvoterIds = new ArrayList<>();
@@ -40,12 +43,12 @@ public class Post {
 
 	}
 
-	public Post(String title, String content, Community community) {
+	public Post(String title, String content, Community community, User author) {
 		super();
 		this.title = title;
 		this.content = content;
 		this.community = community;
-//		this.author = author;
+		this.author = author;
 		this.creationDate = LocalDate.now();
 	}
 
@@ -89,6 +92,14 @@ public class Post {
 		this.creationDate = creationDate;
 	}
 
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+
 	public List<Long> getUpvoterIds() {
 		return upvoterIds;
 	}
@@ -127,9 +138,9 @@ public class Post {
 		if (getClass() != obj.getClass())
 			return false;
 		Post other = (Post) obj;
-		return Objects.equals(community, other.community)
-				&& Objects.equals(content, other.content) && Objects.equals(creationDate, other.creationDate)
-				&& Objects.equals(id, other.id) && Objects.equals(title, other.title);
+		return Objects.equals(community, other.community) && Objects.equals(content, other.content)
+				&& Objects.equals(creationDate, other.creationDate) && Objects.equals(id, other.id)
+				&& Objects.equals(title, other.title);
 	}
 
 }
