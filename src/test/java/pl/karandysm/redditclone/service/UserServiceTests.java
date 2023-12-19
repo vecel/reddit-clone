@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import pl.karandysm.redditclone.dto.UserDto;
 import pl.karandysm.redditclone.exceptions.RegisterException;
+import pl.karandysm.redditclone.model.Post;
 import pl.karandysm.redditclone.model.User;
 import pl.karandysm.redditclone.repository.UserRepository;
 
@@ -23,7 +24,7 @@ class UserServiceTests {
 	private UserRepository userRepository;
 
 	@Test
-	void registeredUserHasProperFieldValues() throws RegisterException {
+	public void registeredUserHasProperFieldValues() throws RegisterException {
 		UserDto userDto = new UserDto("newUser", "newuser@example.com", "password123", "password123");
         when(userRepository.existsByUsername(userDto.getUsername())).thenReturn(false);
         when(userRepository.existsByEmail(userDto.getEmail())).thenReturn(false);
@@ -34,5 +35,7 @@ class UserServiceTests {
         assertThat(registeredUser.getUsername()).isEqualTo(userDto.getUsername());
         assertThat(registeredUser.getEmail()).isEqualTo(userDto.getEmail());
 	}
+	
+	
 
 }

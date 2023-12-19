@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 import pl.karandysm.redditclone.model.Community;
 import pl.karandysm.redditclone.model.Post;
+import pl.karandysm.redditclone.model.User;
 import pl.karandysm.redditclone.service.CommunityService;
 import pl.karandysm.redditclone.service.PostService;
 
@@ -62,8 +63,8 @@ public class IndexControllerTests {
 //		Community community1 = new Community("test1", "description 1");
 //		communityService.addCommunity(community1);
 //
-//		Post post1 = new Post("post1", "", community1.getId(), (long) 1);
-//		Post post2 = new Post("post2", "", community1.getId(), (long) 1);
+//		Post post1 = new Post("post1", "", community1, null);
+//		Post post2 = new Post("post2", "", community1, null);
 //		postService.addPost(post1);
 //		postService.addPost(post2);
 //

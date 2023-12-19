@@ -32,6 +32,7 @@ public class UserRepositoryTests {
 	@BeforeEach
 	public void setUpDatabase() {
 		userRepository.deleteAll();
+		postRepository.deleteAll();
 	}
 	
 	@Test
@@ -134,30 +135,34 @@ public class UserRepositoryTests {
 		assertThat(notExists).isFalse();
 	}
 	
-	@Test
-	public void postsAreNotRemovedWhenOwnerIsRemoved() throws RegisterException {
-		// given
-		String email = "tomek@gmail.com";
-		String username = "testusername";
-		UserDto userDto = new UserDto(username, email, "password123", "password123");
-		User user = userService.registerUser(userDto);
-		
-		String title = "testpost";
-		Post post = new Post(title, "", null);
-		postRepository.save(post);
-
-		Long id = post.getId();
-		Set<Post> posts = new HashSet<>();
-		posts.add(post);
-		user.setPosts(posts);
-		
-		// when
-		userRepository.delete(user);
-		
-		// then
-		assertThat(userRepository.findByUsername(username).size()).isEqualTo(0);
-		assertThat(postRepository.findById(id).isPresent()).isTrue();
-		assertThat(postRepository.findById(id).get().getTitle()).isEqualTo(title);
-
-	}
+/*
+ * Na razie nie mozna usuwac userow z bazy bez usuwania postow, ktorych sa autorami. Docelowo powinno byc to
+ * mozliwe, a post ustawialby wowczas author = null.
+ */
+//	@Test
+//	public void postsAreNotRemovedWhenOwnerIsRemoved() throws RegisterException {
+//		// given
+//		String email = "tomek@gmail.com";
+//		String username = "testusername";
+//		User user = new User(username, email, -1);
+//		userRepository.save(user);
+//		
+//		String title = "testpost";
+//		Post post = new Post(title, "", null, user);
+//		postRepository.save(post);
+//
+//		Long id = post.getId();
+//		Set<Post> posts = new HashSet<>();
+//		posts.add(post);
+//		user.setPosts(posts);
+//		
+//		// when
+//		userService.deleteUser(user);
+//		
+//		// then
+//		assertThat(userRepository.findByUsername(username).size()).isEqualTo(0);
+//		assertThat(postRepository.findById(id).isPresent()).isTrue();
+//		assertThat(postRepository.findById(id).get().getTitle()).isEqualTo(title);
+//
+//	}
 }

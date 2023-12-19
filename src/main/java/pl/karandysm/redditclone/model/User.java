@@ -29,7 +29,7 @@ public class User {
 			cascade = CascadeType.ALL)
 	private Set<Community> communities;
 
-	@OneToMany(mappedBy = "author")
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Post> posts;
 
 	public User(String username, String email, int passwordHash) {

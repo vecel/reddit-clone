@@ -50,7 +50,7 @@ public class IndexController {
 			// placeholder
 			return "redirect:/error";
 		}
-		List<Post> posts = postService.getPostsForCommunityById(oCommunity.get().getId());
+		List<Post> posts = postService.getPostsForCommunity(oCommunity.get());
 
 		model.addAttribute("community", oCommunity.get());
 		model.addAttribute("posts", posts);
