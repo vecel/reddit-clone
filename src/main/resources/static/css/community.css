@@ -41,20 +41,38 @@
     padding: 1rem;
 }
 
-.community__add-post {
-    background-color: var(--primary-color);
+.community__button {
+    
     display: flex;
     align-items: center;
     position: absolute;
-    right: 3rem;
-    bottom: 2rem;
-    border-radius: 64px;
-    padding: 0.5rem 1rem;
     color: var(--primary-bright);
+    
     font-weight: bold;
     cursor: pointer;
 }
 
-.community__add-post--hover:hover {
+.community__button--join {
+    background-color: blue;
+    font-size: small;
+    border-radius: 64px;
+    padding: 0.3rem 0.7rem;
+    right: 24px;
+    top: 80px;
+}
+
+.community__button--add-post {
+    background-color: var(--primary-color);
+    border-radius: 64px;
+    padding: 0.5rem 1rem;
+    right: 3rem;
+    bottom: 2rem;
+}
+
+.community__button--join-hover:hover {
+    background-color: gray;
+}
+
+.community__button--add-post-hover:hover {
     background-color: var(--secondary-color);
 }

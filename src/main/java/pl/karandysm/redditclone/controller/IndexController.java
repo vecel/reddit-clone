@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import pl.karandysm.redditclone.constants.HttpSessionConstants;
 import pl.karandysm.redditclone.model.Community;
 import pl.karandysm.redditclone.model.Post;
+import pl.karandysm.redditclone.model.User;
 import pl.karandysm.redditclone.service.CommunityService;
 import pl.karandysm.redditclone.service.PostService;
 import pl.karandysm.redditclone.service.UserService;
@@ -43,7 +44,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("/community")
-	public String community(@RequestParam("name") String name, Model model) {
+	public String community(@RequestParam("name") String name, Model model, HttpSession session) {
 		addCommunitiesListToModel(model);
 		Optional<Community> oCommunity = communityService.getCommunityByName(name);
 		if (oCommunity.isEmpty()) {
@@ -54,7 +55,15 @@ public class IndexController {
 
 		model.addAttribute("community", oCommunity.get());
 		model.addAttribute("posts", posts);
+		model.addAttribute("userInCommunity", communityService.isUserInCommunity((User)session.getAttribute(HttpSessionConstants.USER), oCommunity.get()));
 		return "index";
+	}
+	
+	@GetMapping("/community/join")
+	public String communityJoin(@RequestParam("name") String name, Model model, HttpSession session){
+		Community community = communityService.getCommunityByName(name).get();
+		communityService.addUserToCommunity((User) session.getAttribute(HttpSessionConstants.USER), community);
+		return "redirect:/community?name=" + name;
 	}
 
 	private void addCommunitiesListToModel(Model model) {

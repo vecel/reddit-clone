@@ -14,7 +14,9 @@
 			<div class="community__stats-element" th:text="'Members: ' + ${community.members.size}"></div>
 			<div class="community__stats-element" th:text="'Posts: ' + ${community.posts.size}"></div>
 		</div>
-		<div class="community__add-post community__add-post--hover"><span class="material-icons">add</span>Add post
+		<a th:if="${session.user == null}" class="community__button community__button--join community__button--join-hover" href="/register"><span class="material-icons">add</span>Join</a>
+		<a th:if="${session.user != null and not userInCommunity}" class="community__button community__button--join community__button--join-hover" th:href="@{/community/join(name=${param.name})}"><span class="material-icons">add</span>Join</a>
+		<div class="community__button community__button--add-post community__add-post--hover"><span class="material-icons">add</span>Add post
 		</div>
 		<div class="horizontal-line"></div>
 	</div>
