@@ -1,0 +1,135 @@
+.header {
+    background-color: var(--primary-dark);
+    padding: 0 1.5rem;
+    height: 64px;
+    width: calc(100vw - 3rem);
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.header__title {
+    width: min-content;
+    display: flex;
+    align-items: center;
+    color: var(--primary-bright);
+}
+
+.header__title-logo {
+    background-color: var(--primary-color);
+    height: 3rem;
+    width: 3rem;
+    border-radius: 2rem;
+}
+
+.header__title-text {
+    font-size: x-large;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.header__title-text--primary-color {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.header__search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4rem;
+    color: var(--primary-bright);
+    flex-grow: 1;
+}
+
+.header__search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--secondary-dark);
+    padding: 0 1rem;
+    height: calc(100% - 1rem);
+    width: 70%;
+    border-radius: 2rem;
+}
+
+.header__search-bar--hover:hover {
+    background-color: var(--tertiary-dark);
+}
+
+.header__search-icon {
+    cursor: pointer;
+}
+
+.header__search-input {
+    flex-grow: 1;
+    color: var(--primary-bright);
+    font-size: medium;
+    padding-left: 0.5rem;
+}
+
+.header__login {
+    display: flex;
+    align-items: center;
+}
+
+.header__login-anchor {
+    border-radius: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 1rem);
+    padding: 0 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.header__login-anchor--outlined {
+    border-style: solid;
+    border-width: 3px;
+    height: calc(100% - 1rem - 6px);
+    border-color: var(--primary-color);
+    color: var(--primary-bright);
+}
+
+.header__login-anchor--outlined-hover:hover {
+    background-color: var(--secondary-dark);
+}
+
+.header__login-anchor--prominent {
+    background-color: var(--primary-color);
+    color: var(--primary-bright);
+}
+
+.header__login-anchor--prominent-hover:hover {
+    background-color: var(--secondary-color);
+}
+
+.header__user {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    color: gray;
+    width: min-content;
+}
+
+.header__user-icon {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.header__user-username {
+    margin-right: 0.5rem;
+    max-width: 10rem;
+    min-width: 4rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.header__user-sign-out {
+    cursor: pointer;
+}

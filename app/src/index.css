@@ -1,13 +1,118 @@
+:root {
+  --primary-color: #dd510b;
+  --secondary-color: #b23b0c;
+  
+  --primary-dark: #222222;
+  --secondary-dark: #343434;
+  --tertiary-dark: #494949;
+  
+  --primary-bright: #ffffff;
+  --secondary-bright: #dddddd;
+  --tertiary-bright: #888888;
+
+  --small-font: 0.85rem;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: var(--secondary-dark);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.view {
+    background-color: var(--secondary-dark);
+    color: var(--secondary-bright);
+    width: 52vw;
+    margin: 120px 0 0 96px;
+    overflow-y: scroll;
+    position: absolute;
+    top: 64px;
+    left: 388px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.md-36 {
+    font-size: 36px !important;
+}
+
+h2 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+button {
+    background-color: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+input {
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+}
+
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+.justify-right {
+    display: flex;
+    justify-content: right;
+}
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.primary-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.small-font {
+    font-size: 0.85rem;
+}
+
+.medium-font {
+    font-size: medium;
+}
+
+.gap-right {
+    margin-right: 0.5rem;
+}
+
+.horizontal-line {
+    width: 100%;
+    height: 1px;
+    background-color: black;
 }
