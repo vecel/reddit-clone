@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,9 +32,11 @@ public class Community {
 	@OneToMany(mappedBy = "community",
 			cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH},
 			orphanRemoval = true)
+	@JsonManagedReference
 	private Set<Post> posts;
 
 	@ManyToMany
+	@JsonBackReference
 	private Set<User> members;
 
 	public Community() {

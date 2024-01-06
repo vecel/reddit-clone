@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +19,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Posts")
-public class Post {
+public class
+Post {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +31,11 @@ public class Post {
 	private LocalDate creationDate;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Community community;
 
 	@ManyToOne
+	@JsonBackReference
 	private User author;
 
 	// ponizsze do zmiany

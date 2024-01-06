@@ -22,7 +22,7 @@ public class CommunityService {
 	
 	public Optional<Community> getCommunityByName(String name) {
 		List<Community> communities = communityRepository.findByCommunityName(name);
-		if (communities.size() > 0) {
+		if (!communities.isEmpty()) {
 			return Optional.of(communities.get(0));
 		}
 		return Optional.empty();
