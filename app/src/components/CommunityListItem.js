@@ -1,9 +1,14 @@
-const CommunityListItem = (props) => {
+const CommunityListItem = ({id, title, onCommunityClick}) => {
+
+    const handleClick = () => {
+        onCommunityClick(id)
+    }
+
     return (
-        <a className="sidebar__list-item sidebar__list-item--hover" href={props.href}>
+        <div className="sidebar__list-item sidebar__list-item--hover" onClick={handleClick}>
             <div className="sidebar__list-item-logo"></div>
-            <span className="sidebar__list-item-text">{props.communityName}</span>
-        </a>
+            <span className="sidebar__list-item-text">{title}</span>
+        </div>
     );
 };
 

@@ -19,7 +19,11 @@ public class CommunityService {
 	public List<Community> findAll() {
 		return communityRepository.findAll();
 	}
-	
+
+	public Optional<Community> findById(Long id) {
+		return communityRepository.findById(id);
+	}
+
 	public Optional<Community> getCommunityByName(String name) {
 		List<Community> communities = communityRepository.findByCommunityName(name);
 		if (!communities.isEmpty()) {

@@ -1,10 +1,10 @@
 import CommunitiesList from '../components/CommunitiesList';
 import '../styles/Sidebar.css';
 
-const Sidebar = (props) => {
+const Sidebar = ({communities, onCommunityClick}) => {
     return (
         <div className="sidebar">
-			<CommunitiesList communities={props.communities} />
+			<CommunitiesList communities={communities} onCommunityClick={onCommunityClick}/>
 		</div>
     );
 };

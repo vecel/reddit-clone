@@ -1,13 +1,13 @@
 package pl.karandysm.redditclone.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pl.karandysm.redditclone.model.Community;
 import pl.karandysm.redditclone.service.CommunityService;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -23,5 +23,12 @@ public class CommunityController {
     @GetMapping("/communities")
     public List<Community> communities() {
         return communityService.findAll();
+    }
+
+    @GetMapping("/community/{id}")
+    public ResponseEntity<?> community(@PathVariable Long id) {
+        Optional<Community> community = communityService.findById(id);
+        return community.map(response -> ResponseEntity.ok().body(response))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

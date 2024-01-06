@@ -1,0 +1,78 @@
+.community {
+    position: relative;
+}
+
+.community__baner {
+    width: 52vw;
+    height: 96px;
+    background-color: green;
+}
+
+.community__logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    background-color: pink;
+    position: absolute;
+    top: 56px;
+    left: 48px;
+}
+
+.community__title {
+    display: inline-block;
+    margin: 10px 20px 0 140px;
+    height: 40px;
+    font-size: 1.5rem;
+}
+
+.community__description {
+    padding: 1rem 2rem 1rem 2rem;
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.community__stats {
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+}
+
+.community__stats-element {
+    padding: 1rem;
+}
+
+.community__button {
+    
+    display: flex;
+    align-items: center;
+    position: absolute;
+    color: var(--primary-bright);
+    
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.community__button--join {
+    background-color: blue;
+    font-size: small;
+    border-radius: 64px;
+    padding: 0.3rem 0.7rem;
+    right: 24px;
+    top: 80px;
+}
+
+.community__button--add-post {
+    background-color: var(--primary-color);
+    border-radius: 64px;
+    padding: 0.5rem 1rem;
+    right: 3rem;
+    bottom: 2rem;
+}
+
+.community__button--join-hover:hover {
+    background-color: gray;
+}
+
+.community__button--add-post-hover:hover {
+    background-color: var(--secondary-color);
+}

@@ -1,15 +1,13 @@
 import CommunityListItem from "./CommunityListItem";
 
-const CommunitiesList = (props) => {
-
-    const communities = props.communities;
+const CommunitiesList = ({communities, onCommunityClick}) => {
 
     return (
         <div className="sidebar__list">
 			<span className="sidebar__list-title">COMMUNITIES</span>
 			<div className="sidebar__list-content">
                 {communities.map((community) => (
-                    <CommunityListItem href={"#"} communityName={community.communityName} />
+                    <CommunityListItem id={community.id} title={community.communityName} onCommunityClick={onCommunityClick}/>
                 ))}
 			</div>
 		</div>
