@@ -1,6 +1,7 @@
 package pl.karandysm.redditclone.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.karandysm.redditclone.model.User;
@@ -22,4 +23,6 @@ public class UserController {
     public List<User> users() {
         return userService.findAll();
     }
+
+
 }

@@ -36,7 +36,7 @@ Post {
 	private Community community;
 
 	@ManyToOne
-	@JsonManagedReference
+	@JsonBackReference
 	private User author;
 
 	// ponizsze do zmiany

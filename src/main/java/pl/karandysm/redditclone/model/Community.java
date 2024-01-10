@@ -32,11 +32,11 @@ public class Community {
 	@OneToMany(mappedBy = "community",
 			cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH},
 			orphanRemoval = true)
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<Post> posts;
 
 	@ManyToMany
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<User> members;
 
 	public Community() {
