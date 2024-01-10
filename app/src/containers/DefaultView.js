@@ -1,4 +1,4 @@
-const DefaultView = () => {
+function DefaultView() {
     return (
         <div>
             {/* Your component content goes here */}

@@ -7,7 +7,7 @@ const CommunitiesList = ({communities, onCommunityClick}) => {
 			<span className="sidebar__list-title">COMMUNITIES</span>
 			<div className="sidebar__list-content">
                 {communities.map((community) => (
-                    <CommunityListItem id={community.id} title={community.communityName} onCommunityClick={onCommunityClick}/>
+                    <CommunityListItem key={community.id} id={community.id} title={community.communityName} onCommunityClick={onCommunityClick}/>
                 ))}
 			</div>
 		</div>
