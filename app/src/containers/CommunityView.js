@@ -1,6 +1,5 @@
 import '../styles/CommunityView.css';
 import { Add } from '@mui/icons-material';
-import PostsView from './PostsView';
 
 function CommunityView({community}) {
 
@@ -15,7 +14,7 @@ function CommunityView({community}) {
                 </div>
                 <div className="horizontal-line"></div>
                 <div className="community__stats">
-                    {/* <div className="community__stats-element">Members: {community.members}</div> */}
+                    <div className="community__stats-element">Members: {community.members.length}</div>
                     <div className="community__stats-element">Posts: {community.posts.length}</div>
                 </div>
                 <a className="community__button community__button--join community__button--join-hover" href="/register"><Add />Join</a>
@@ -23,8 +22,6 @@ function CommunityView({community}) {
                 <div className="community__button community__button--add-post community__add-post--hover"><Add />Add post</div>
                 <div className="horizontal-line"></div>
             </div>
-
-            <PostsView posts={community.posts}/>
         </>
     );
 };

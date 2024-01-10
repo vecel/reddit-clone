@@ -36,7 +36,7 @@ public class Community {
 	private Set<Post> posts;
 
 	@ManyToMany
-	@JsonBackReference
+	@JsonManagedReference
 	private Set<User> members;
 
 	public Community() {

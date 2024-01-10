@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CommunityView from "./CommunityView";
 import DefaultView from "./DefaultView";
+import PostsView from "./PostsView";
 
 function View({communityId}) {
 
@@ -17,7 +18,10 @@ function View({communityId}) {
     return (
         <div className="view">
             {community !== null ? 
-                <CommunityView community={community}/> : 
+                <>
+                <CommunityView community={community}/> 
+                <PostsView posts={community.posts}/>
+                </>: 
                 <DefaultView />}
         </div>
     );

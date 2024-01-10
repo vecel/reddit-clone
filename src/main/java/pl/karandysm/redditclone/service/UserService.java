@@ -32,6 +32,10 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
+	public List<User> findAll() {
+		return userRepository.findAll();
+	}
+
 	public User registerUser(UserDto userDto) throws RegisterException {
 		String messageEnding = " is already taken";
 		if (userRepository.existsByUsername(userDto.getUsername())) {

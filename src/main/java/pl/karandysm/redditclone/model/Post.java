@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,7 +36,7 @@ Post {
 	private Community community;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonManagedReference
 	private User author;
 
 	// ponizsze do zmiany
