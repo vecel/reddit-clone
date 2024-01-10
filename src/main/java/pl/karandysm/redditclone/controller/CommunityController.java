@@ -33,7 +33,7 @@ public class CommunityController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/community/{id}/users")
+    @GetMapping("/community/{id}/members")
     public ResponseEntity<?> communityMembers(@PathVariable Long id) {
         Optional<Community> community = communityService.findById(id);
         return community.map(response -> ResponseEntity.ok().body(response.getMembers()))
