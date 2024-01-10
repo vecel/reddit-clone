@@ -1,27 +1,37 @@
 import '../styles/CommunityView.css';
-import { Add } from '@mui/icons-material';
+import Community from '../components/Community';
+import PostsView from './PostsView';
+import { useEffect, useState } from 'react';
 
-function CommunityView({community}) {
+function CommunityView({id}) {
+
+    const [community, setCommunity] = useState(null)
+    const [posts, setPosts] = useState(null)
+    const [members, setMembers] = useState(null)
+
+    useEffect(() => {
+        const prefix = 'http://localhost:8080/api/community/'
+        fetch(prefix + id)
+            .then(response => response.json())
+            .then(data => setCommunity(data))
+
+        fetch(prefix + id + '/posts')
+            .then(response => response.json())
+            .then(data => setPosts(data))
+
+        fetch(prefix + id + '/members')
+            .then(response => response.json())
+            .then(data => setMembers(data))
+    }, [id])
 
     return (
+        (community && posts && members) ?
         <>
-            <div className="community">
-                <div className="community__baner"></div>
-                <div className="community__logo"></div>
-                <div className="community__title">{community.communityName}</div>
-                <div className="community__description">
-                    <p>{community.description}</p>
-                </div>
-                <div className="horizontal-line"></div>
-                <div className="community__stats">
-                    <div className="community__stats-element">Members: {community.members.length}</div>
-                    <div className="community__stats-element">Posts: {community.posts.length}</div>
-                </div>
-                <a className="community__button community__button--join community__button--join-hover" href="/register"><Add />Join</a>
-                <a className="community__button community__button--join community__button--join-hover"><Add />Join</a>
-                <div className="community__button community__button--add-post community__add-post--hover"><Add />Add post</div>
-                <div className="horizontal-line"></div>
-            </div>
+            <Community title={community.communityName} description={community.description} membersNumber={members.length} postsNumber={posts.length}/>
+            <PostsView posts={posts}/>
+        </> :
+        <>
+            <div>Loading</div>
         </>
     );
 };
