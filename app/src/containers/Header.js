@@ -22,9 +22,10 @@ function Header() {
             <a className="header__login-anchor header__login-anchor--prominent header__login-anchor--prominent-hover" href="register">Sign Up</a>
         </div>
     
+
         <div className="header__user">
             <AccountCircle className="header__user-icon md-36"/>
-            <span className="header__user-username">Wez username z sesji</span>
+            <span className="header__user-username">mateusz</span>
             <a className="header__user-sign-out" href="/logout">
                 <Logout />
             </a>
