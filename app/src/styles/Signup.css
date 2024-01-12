@@ -89,6 +89,7 @@
 	color: red;
 	font-size: 0.8rem;
 	margin-bottom: 0.5rem;
+    white-space: pre-line;
 }
 
 .form__link {

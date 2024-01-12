@@ -36,6 +36,19 @@ code {
     left: 388px;
 }
 
+.main {
+    background-color: white;
+    width: 400px;
+    height: 640px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 16px;
+}
+
 .main-container {
     display: flex;
     flex-direction: row;
