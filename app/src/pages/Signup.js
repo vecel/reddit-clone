@@ -27,6 +27,10 @@ function Signup() {
         setUser({...user, [name]: value})
     }
 
+    function handleInvalidFields(response) {
+
+    }
+
     function handleSubmit(e) {
         e.preventDefault()
         
@@ -37,6 +41,46 @@ function Signup() {
             },
             body: JSON.stringify(user),
         })
+        .then(response => {
+            if (response.ok) {
+                navigate('/')
+                return
+            }
+            response.json()
+            .then(data => {
+                console.log(data)
+                let errors = {}
+                if (data.errors) {
+                    data.errors.forEach(error => {
+                        /* passwordMatch error field is undefined because of custom annotation in backend, 
+                        so we have to handle it separately. That is temporary solution.
+                        */
+                        if (error.field === undefined) {
+                            errors.passwordMatch = error.defaultMessage
+                            return
+                        }
+                        errors[error.field] = errors[error.field] ? errors[error.field] + '\n' + error.defaultMessage : error.defaultMessage
+                    })
+                }
+                return errors
+            })
+            .then(errors => {
+                let hasErrors = false
+                for (const key in errors) {
+                    if (errors[key] !== '') {
+                        hasErrors = true
+                        break
+                    }
+                }
+                setInvalidFields(errors)
+                if (!hasErrors) {
+                    navigate('/')
+                }
+            })
+            
+        })
+
+        /*
         .then(response => response.json())
         .then(data => {
             // Trzeba jakos obsluzyc passwrordMatch error, jego field jest undefined
@@ -60,7 +104,7 @@ function Signup() {
             if (!hasErrors) {
                 navigate('/')
             }
-        })
+        })*/
 
         setUser(initialFormState)
     }

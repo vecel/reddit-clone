@@ -1,7 +1,10 @@
 package pl.karandysm.redditclone.controller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,11 @@ import pl.karandysm.redditclone.exceptions.UserExistsWithUsernameException;
 import pl.karandysm.redditclone.model.User;
 import pl.karandysm.redditclone.service.UserService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/api")
 @CrossOrigin
@@ -32,35 +40,30 @@ public class RegisterController {
 		this.userService = userService;
 	}
 
-	@GetMapping("/register")
-	public String displayForm(Model model) {
-		model.addAttribute(ModelConstants.USER_DTO, new UserDto());
-		return "register";
-	}
-
-	@PostMapping(value = "/register", consumes = "application/json")
-	public ResponseEntity<?> submitForm(@RequestBody @Valid UserDto userDto) {
+	@PostMapping(value = "/register", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> submitForm(@RequestBody @Valid UserDto userDto, HttpSession session) {
 		logger.info("Request to create user from: " + userDto);
 
-		return ResponseEntity.ok().body(userDto);
-//
-//		if (bindingResult.hasErrors()) {
-//			return "register";
-//		}
-//
-//		try {
-//			User user = userService.registerUser(userDto);
-//			session.setAttribute(HttpSessionConstants.USER, user);
-//		} catch (UserExistsWithUsernameException e) {
-//			bindingResult.rejectValue("username", "usernameTaken", e.getMessage());
-//			return "register";
-//		} catch (UserExistsWithEmailException e) {
-//			bindingResult.rejectValue("email", "emailTaken", e.getMessage());
-//			return "register";
-//		} catch (RegisterException e) {
-//
-//		}
-//
-//		return "redirect:/";
+		// That looks like terrible approach of returning json body
+		Map<String, Object> body = new HashMap<>();
+		List<Map<String, String>> errors = new ArrayList<>();
+		Map<String, String> error = new HashMap<>();
+
+		try {
+			User user = userService.registerUser(userDto);
+			session.setAttribute(HttpSessionConstants.USER, user);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} catch (UserExistsWithUsernameException e) {
+			error.put("field", "username");
+			error.put("defaultMessage", e.getMessage());
+		} catch (UserExistsWithEmailException e) {
+			error.put("field", "email");
+			error.put("defaultMessage", e.getMessage());
+		} catch (RegisterException e) {
+			logger.error(e.getMessage());
+		}
+		errors.add(error);
+		body.put("errors", errors);
+		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 	}
 }
