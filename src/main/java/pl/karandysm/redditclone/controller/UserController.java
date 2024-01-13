@@ -33,8 +33,13 @@ public class UserController {
     public ResponseEntity<User> loggedUser(HttpSession session) {
         logger.info("Session attribute user is: " + session.getAttribute(HttpSessionConstants.USER));
         Optional<User> user = Optional.ofNullable((User) session.getAttribute(HttpSessionConstants.USER));
-//        logger.info("Session user is: " + user.orElse(null));
         return user.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(HttpSession session) {
+        session.removeAttribute(HttpSessionConstants.USER);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

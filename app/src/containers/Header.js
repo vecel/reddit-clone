@@ -2,6 +2,19 @@ import '../styles/Header.css';
 import { Search, AccountCircle, Logout } from '@mui/icons-material';
 
 function Header({loggedUser}) {
+
+    function logout() {
+        fetch('http://localhost:8080/api/logout', {
+            method: 'GET',
+            credentials: 'include'
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.reload()
+            }
+        })
+    }
+
   return (
     <header className="header">
 
@@ -25,9 +38,9 @@ function Header({loggedUser}) {
             <div className="header__user">
                 <AccountCircle className="header__user-icon md-36"/>
                 <span className="header__user-username">{loggedUser.username}</span>
-                <a className="header__user-sign-out" href="/logout">
+                <div className="header__user-sign-out" onClick={logout}>
                     <Logout />
-                </a>
+                </div>
             </div> 
         }
     

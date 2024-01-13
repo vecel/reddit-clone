@@ -33,6 +33,7 @@ function App() {
     .then(() => setLoading(false))
     .catch(err => {
       console.log(err.message)
+      setLoading(false)
     })
   }, [])
 
