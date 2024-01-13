@@ -11,9 +11,12 @@ import pl.karandysm.redditclone.repository.PostRepository;
 
 @Service
 public class PostService {
-	
-	@Autowired
+
 	PostRepository postRepository;
+
+	public PostService(PostRepository postRepository) {
+		this.postRepository = postRepository;
+	}
 	
 	public List<Post> getPostsForCommunity(Community community) {
 		return postRepository.findAllByCommunity(community);

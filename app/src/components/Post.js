@@ -5,7 +5,7 @@ function Post({author, creationDate, title, content}) {
     return (
         <div className="post">
             <div className="post__header-short">
-                <span className="post__header-text">Podmienic to</span>
+                <span className="post__header-text">Do zmiany</span>
                 <span className="post__header-text post__header-text--end">{creationDate}</span>
             </div>
             <span className="post__title post__title--hover">{title}</span>
