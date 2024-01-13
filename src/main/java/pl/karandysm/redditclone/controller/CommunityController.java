@@ -10,7 +10,6 @@ import pl.karandysm.redditclone.service.CommunityService;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class CommunityController {

@@ -5,10 +5,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pl.karandysm.redditclone.controller.UserController;
 import pl.karandysm.redditclone.dto.UserDto;
 import pl.karandysm.redditclone.exceptions.DuplicateUsernameException;
 import pl.karandysm.redditclone.exceptions.RegisterException;
@@ -21,6 +24,8 @@ import pl.karandysm.redditclone.repository.UserRepository;
 
 @Service
 public class UserService {
+
+	private final Logger logger = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -45,7 +50,9 @@ public class UserService {
 			throw new UserExistsWithEmailException("Email " + userDto.getEmail() + messageEnding);
 		}
 
-		return userRepository.save(this.createUserFromDto(userDto));
+		User user = this.createUserFromDto(userDto);
+		logger.info("Registered user: " + user);
+		return userRepository.save(user);
 	}
 
 	public Optional<User> validateUser(String username, String password) throws DuplicateUsernameException {

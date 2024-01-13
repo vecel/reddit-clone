@@ -1,7 +1,7 @@
 import '../styles/Header.css';
 import { Search, AccountCircle, Logout } from '@mui/icons-material';
 
-function Header() {
+function Header({loggedUser}) {
   return (
     <header className="header">
 
@@ -17,19 +17,21 @@ function Header() {
             </label>
         </div>
     
-        <div className="header__login">
-            <a className="header__login-anchor header__login-anchor--outlined header__login-anchor--outlined-hover" href="login">Log In</a>
-            <a className="header__login-anchor header__login-anchor--prominent header__login-anchor--prominent-hover" href="register">Sign Up</a>
-        </div>
+        {loggedUser === null ?
+            <div className="header__login">
+                <a className="header__login-anchor header__login-anchor--outlined header__login-anchor--outlined-hover" href="login">Log In</a>
+                <a className="header__login-anchor header__login-anchor--prominent header__login-anchor--prominent-hover" href="register">Sign Up</a>
+            </div> :
+            <div className="header__user">
+                <AccountCircle className="header__user-icon md-36"/>
+                <span className="header__user-username">{loggedUser.username}</span>
+                <a className="header__user-sign-out" href="/logout">
+                    <Logout />
+                </a>
+            </div> 
+        }
     
 
-        <div className="header__user">
-            <AccountCircle className="header__user-icon md-36"/>
-            <span className="header__user-username">mateusz</span>
-            <a className="header__user-sign-out" href="/logout">
-                <Logout />
-            </a>
-        </div> 
     </header>
 
   );

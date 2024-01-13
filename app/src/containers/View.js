@@ -7,9 +7,7 @@ function View({communityId}) {
     return (
         <div className="view">
             {communityId !== -1 ? 
-                <>
-                <CommunityView id={communityId}/> 
-                </>: 
+                <CommunityView id={communityId}/> : 
                 <DefaultView />}
         </div>
     );

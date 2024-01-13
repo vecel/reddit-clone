@@ -27,9 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/api")
-@CrossOrigin
 public class RegisterController {
 
 	private final Logger logger = LoggerFactory.getLogger(RegisterController.class);
@@ -52,6 +51,7 @@ public class RegisterController {
 		try {
 			User user = userService.registerUser(userDto);
 			session.setAttribute(HttpSessionConstants.USER, user);
+			logger.info("Session attribute user is: " + session.getAttribute(HttpSessionConstants.USER));
 			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (UserExistsWithUsernameException e) {
 			error.put("field", "username");

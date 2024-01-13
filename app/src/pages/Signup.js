@@ -27,10 +27,6 @@ function Signup() {
         setUser({...user, [name]: value})
     }
 
-    function handleInvalidFields(response) {
-
-    }
-
     function handleSubmit(e) {
         e.preventDefault()
         
@@ -39,6 +35,7 @@ function Signup() {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(user),
         })
         .then(response => {
@@ -79,32 +76,6 @@ function Signup() {
             })
             
         })
-
-        /*
-        .then(response => response.json())
-        .then(data => {
-            // Trzeba jakos obsluzyc passwrordMatch error, jego field jest undefined
-            let errors = {}
-            if (data.errors) {
-                data.errors.forEach(error => {
-                    errors[error.field] = errors[error.field] ? errors[error.field] + '\n' + error.defaultMessage : error.defaultMessage
-                })
-            }
-            return errors
-        })
-        .then(errors => {
-            let hasErrors = false
-            for (const key in errors) {
-                if (errors[key] !== '') {
-                    hasErrors = true
-                    break
-                }
-            }
-            setInvalidFields(errors)
-            if (!hasErrors) {
-                navigate('/')
-            }
-        })*/
 
         setUser(initialFormState)
     }
