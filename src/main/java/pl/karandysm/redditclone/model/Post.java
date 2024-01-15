@@ -31,12 +31,12 @@ Post {
 	private String content;
 	private LocalDate creationDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonBackReference
+	@ManyToOne
+	@JsonManagedReference
 	private Community community;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonManagedReference
 	private User author;
 
 	// ponizsze do zmiany
