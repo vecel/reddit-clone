@@ -42,7 +42,7 @@ function App() {
     <>
       <Header loggedUser={loggedUser}/>
       <Sidebar communities={communities} onCommunityClick={handleCommunityClick} />
-      <View communityId={selectedCommunityId}/>
+      <View communityId={selectedCommunityId} loggedUser={loggedUser}/>
     </>
   );
 }

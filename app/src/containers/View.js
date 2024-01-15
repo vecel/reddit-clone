@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CommunityView from "./CommunityView";
 import DefaultView from "./DefaultView";
 
-function View({communityId}) {
+function View({communityId, loggedUser}) {
 
     return (
         <div className="view">
