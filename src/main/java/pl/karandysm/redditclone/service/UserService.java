@@ -65,6 +65,7 @@ public class UserService {
 		}
 		User user = users.get(0);
 		if (user.getPasswordHash() == Objects.hash(password)) {
+			logger.info("Validated user: " + user);
 			return Optional.of(user);
 		}
 		// Naruszam zasade DRY, bo nie mam ochoty teraz rozkminiac jak ja obejsc

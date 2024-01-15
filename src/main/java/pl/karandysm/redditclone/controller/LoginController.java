@@ -1,13 +1,17 @@
 package pl.karandysm.redditclone.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpSession;
 import pl.karandysm.redditclone.constants.HttpSessionConstants;
@@ -17,40 +21,42 @@ import pl.karandysm.redditclone.exceptions.DuplicateUsernameException;
 import pl.karandysm.redditclone.model.User;
 import pl.karandysm.redditclone.service.UserService;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class LoginController {
+
+	private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	private UserService userService;
 	
 	public LoginController(UserService userService) {
 		this.userService = userService;
 	}
-
-	@GetMapping("/login")
-	public String displayForm(Model model) {
-		model.addAttribute(ModelConstants.USER_DTO, new UserDto());
-		return "login";
-	}
 	
-	@PostMapping("/login")
-	public String submitForm(@ModelAttribute(ModelConstants.USER_DTO) UserDto userDto,
-			HttpSession session) {
+	@PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> submitForm(@RequestBody UserDto userDto,
+										HttpSession session) {
+
+		logger.info("login POST request with userDto: " + userDto);
+
+		Map<String, String> error = new HashMap<>();
+		error.put("error", "User not found");
 		
 		try {
-			Optional<User> oUser = userService.validateUser(userDto.getUsername(), userDto.getPassword());
-			if (oUser.isPresent()) {
-				session.setAttribute(HttpSessionConstants.USER, oUser.get());
-				return "redirect:/";
+			Optional<User> user = userService.validateUser(userDto.getUsername(), userDto.getPassword());
+
+			if (user.isPresent()) {
+				session.setAttribute(HttpSessionConstants.USER, user.get());
+				return new ResponseEntity<>(HttpStatus.OK);
 			}
-			
-			return "redirect:/login?error=true";
 			
 		} catch (DuplicateUsernameException e) {
 			e.printStackTrace();
-			System.err.println("Application should stop here, there is a problem with duplicate usernames in databse");
+			logger.error("There is duplicated username " + userDto.getUsername() + " in database");
 		}
-		
-		return "redirect:/login?error=true";
+
+
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 	
 }
