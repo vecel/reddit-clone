@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.karandysm.redditclone.model.Community;
 import pl.karandysm.redditclone.model.User;
+import pl.karandysm.redditclone.service.CommunityMembershipService;
 import pl.karandysm.redditclone.service.CommunityService;
 
 import java.util.List;
@@ -16,8 +17,11 @@ public class CommunityController {
 
     private CommunityService communityService;
 
-    public CommunityController(CommunityService communityService) {
+    private CommunityMembershipService communityMembershipService;
+
+    public CommunityController(CommunityService communityService, CommunityMembershipService communityMembershipService) {
         this.communityService = communityService;
+        this.communityMembershipService = communityMembershipService;
     }
 
     @GetMapping("/communities")
@@ -44,5 +48,11 @@ public class CommunityController {
         Optional<Community> community = communityService.findById(id);
         return community.map(response -> ResponseEntity.ok().body(response.getPosts()))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/community/{id}/join/{userId}")
+    public ResponseEntity<?> joinCommunity(@PathVariable Long id, @PathVariable Long userId) {
+        boolean joined = communityMembershipService.addUserToCommunity(userId, id);
+        return joined ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

@@ -1,7 +1,7 @@
 import { ThumbDownAlt, ThumbUpAlt, QuestionAnswer } from "@mui/icons-material";
 import '../styles/Post.css';
 
-function Post({author, community, creationDate, title, content}) {
+function Post({author, community, creationDate, title, content, user}) {
     return (
         <div className="post">
             <div className="post__header-short">

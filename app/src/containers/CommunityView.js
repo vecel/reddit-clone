@@ -3,7 +3,7 @@ import Community from '../components/Community';
 import PostsView from './PostsView';
 import { useEffect, useState } from 'react';
 
-function CommunityView({id}) {
+function CommunityView({id, loggedUser}) {
 
     const [community, setCommunity] = useState(null)
     const [posts, setPosts] = useState(null)
@@ -27,8 +27,8 @@ function CommunityView({id}) {
     return (
         (community && posts && members) ?
         <>
-            <Community title={community.communityName} description={community.description} membersNumber={members.length} postsNumber={posts.length}/>
-            <PostsView posts={posts}/>
+            <Community community={community} members={members} posts={posts} user={loggedUser}/>
+            <PostsView posts={posts} user={loggedUser}/>
         </> :
         <>
             <div>Loading</div>
