@@ -12,17 +12,24 @@ import pl.karandysm.redditclone.repository.CommunityRepository;
 
 @Service
 public class CommunityService {
-	
-	@Autowired
+
 	private CommunityRepository communityRepository;
-	
+
+	public CommunityService(CommunityRepository communityRepository) {
+		this.communityRepository = communityRepository;
+	}
+
 	public List<Community> findAll() {
 		return communityRepository.findAll();
 	}
-	
+
+	public Optional<Community> findById(Long id) {
+		return communityRepository.findById(id);
+	}
+
 	public Optional<Community> getCommunityByName(String name) {
 		List<Community> communities = communityRepository.findByCommunityName(name);
-		if (communities.size() > 0) {
+		if (!communities.isEmpty()) {
 			return Optional.of(communities.get(0));
 		}
 		return Optional.empty();
@@ -31,13 +38,5 @@ public class CommunityService {
 	public Community addCommunity(Community community) {
 		return communityRepository.save(community);
 	}
-	
-	public boolean isUserInCommunity(User user, Community community) {
-		return community.getMembers().contains(user);
-	}
-	
-	public void addUserToCommunity(User user, Community community) {
-		community.getMembers().add(user);
-		communityRepository.flush();
-	}
+
 }

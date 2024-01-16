@@ -3,6 +3,8 @@ package pl.karandysm.redditclone.model;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,9 +29,11 @@ public class User {
 
 	@ManyToMany(mappedBy = "members",
 			cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Set<Community> communities;
 
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonBackReference
 	private Set<Post> posts;
 
 	public User(String username, String email, int passwordHash) {

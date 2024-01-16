@@ -5,10 +5,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pl.karandysm.redditclone.controller.UserController;
 import pl.karandysm.redditclone.dto.UserDto;
 import pl.karandysm.redditclone.exceptions.DuplicateUsernameException;
 import pl.karandysm.redditclone.exceptions.RegisterException;
@@ -21,15 +24,17 @@ import pl.karandysm.redditclone.repository.UserRepository;
 
 @Service
 public class UserService {
-	
-	@Autowired
+
+	private final Logger logger = LoggerFactory.getLogger(UserService.class);
+
 	private UserRepository userRepository;
-	
-	@Autowired
-	private PostRepository postRepository;
 
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
+	}
+
+	public List<User> findAll() {
+		return userRepository.findAll();
 	}
 
 	public User registerUser(UserDto userDto) throws RegisterException {
@@ -41,7 +46,9 @@ public class UserService {
 			throw new UserExistsWithEmailException("Email " + userDto.getEmail() + messageEnding);
 		}
 
-		return userRepository.save(this.createUserFromDto(userDto));
+		User user = this.createUserFromDto(userDto);
+		logger.info("Registered user: " + user);
+		return userRepository.save(user);
 	}
 
 	public Optional<User> validateUser(String username, String password) throws DuplicateUsernameException {
@@ -54,21 +61,11 @@ public class UserService {
 		}
 		User user = users.get(0);
 		if (user.getPasswordHash() == Objects.hash(password)) {
+			logger.info("Validated user: " + user);
 			return Optional.of(user);
 		}
-		// Naruszam zasade DRY, bo nie mam ochoty teraz rozkminiac jak ja obejsc
 		return Optional.empty();
 	}
-	
-/*
- * Niedozwolone dopoki nie naprawie
- */
-//	public void deleteUser(User user) {
-//		List<Post> posts = postRepository.findAllByAuthor(user);
-//		posts.stream().forEach(p -> p.setAuthor(null));
-//		postRepository.flush();
-//		userRepository.delete(user);
-//	}
 	
 	private User createUserFromDto(UserDto userDto) {
 		return new User(userDto.getUsername(), userDto.getEmail(), Objects.hash(userDto.getPassword()));
