@@ -1,6 +1,7 @@
 import '../styles/CommunityView.css';
 import Community from '../components/Community';
 import PostsView from './PostsView';
+import PostEdit from '../components/PostEdit';
 import { useEffect, useState } from 'react';
 
 function CommunityView({id, loggedUser}) {
@@ -8,6 +9,8 @@ function CommunityView({id, loggedUser}) {
     const [community, setCommunity] = useState(null)
     const [posts, setPosts] = useState(null)
     const [members, setMembers] = useState(null)
+
+    const [postEdit, setPostEdit] = useState(false)
 
     const fetchCommunityMembers = (communityId) => {
         fetch('http://localhost:8080/api/community/' + communityId + '/members')
@@ -27,7 +30,11 @@ function CommunityView({id, loggedUser}) {
         })
 
         fetchCommunityMembers(communityId)
-      }    
+    }
+
+    const handleAddPostClick = () => {
+        setPostEdit(true)
+    }
 
     useEffect(() => {
         const prefix = 'http://localhost:8080/api/community/'
@@ -45,7 +52,8 @@ function CommunityView({id, loggedUser}) {
     return (
         (community && posts && members) ?
         <>
-            <Community community={community} members={members} posts={posts} user={loggedUser} handleCommunityJoinClick={handleCommunityJoinClick}/>
+            <Community community={community} members={members} posts={posts} user={loggedUser} handleCommunityJoinClick={handleCommunityJoinClick} handleAddPostClick={handleAddPostClick}/>
+            {postEdit && <PostEdit /> }
             <PostsView posts={posts} user={loggedUser}/>
         </> :
         <>

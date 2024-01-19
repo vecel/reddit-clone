@@ -1,7 +1,7 @@
 import { Add } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 
-function Community({community, members, posts, user, handleCommunityJoinClick}) {
+function Community({community, members, posts, user, handleCommunityJoinClick, handleAddPostClick}) {
 
     const [joined, setJoined] = useState(false)
 
@@ -35,8 +35,11 @@ function Community({community, members, posts, user, handleCommunityJoinClick}) 
                 {
                     !joined &&
                     <a className="community__button community__button--join community__button--join-hover" onClick={onCommunityJoinClick}><Add />Join</a>
-                } 
-                <div className="community__button community__button--add-post community__add-post--hover"><Add />Add post</div>
+                }
+                {
+                    (user !== null) &&
+                    <div className="community__button community__button--add-post community__button--add-post-hover" onClick={handleAddPostClick}><Add />Add post</div>
+                }
                 <div className="horizontal-line"></div>
             </div>
     );

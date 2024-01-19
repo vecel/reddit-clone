@@ -77,3 +77,44 @@
     border-color: var(--primary-bright);
     color: var(--primary-bright);
 }
+
+.post-edit {
+    padding: 2rem;
+}
+
+.post-edit__area {
+    padding: 1rem;
+    width: calc(100% - 2rem);
+}
+
+.post-edit__controllers {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-edit__button {
+    color: var(--primary-bright);
+    border-radius: 4rem;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0 1rem;
+    height: 2.5rem;
+    font-size: 0.9rem;
+    margin: 0.5rem;
+}
+
+.post-edit__button--submit {
+    background-color: var(--primary-color);
+}
+
+.post-edit__button--submit-hover:hover {
+    background-color: var(--secondary-color);
+}
+
+.post-edit__button--cancel {
+    background-color: red;
+}
+
+.post-edit__button--cancel-hover:hover {
+    background-color: purple;
+} 
