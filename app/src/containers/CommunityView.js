@@ -9,6 +9,26 @@ function CommunityView({id, loggedUser}) {
     const [posts, setPosts] = useState(null)
     const [members, setMembers] = useState(null)
 
+    const fetchCommunityMembers = (communityId) => {
+        fetch('http://localhost:8080/api/community/' + communityId + '/members')
+            .then(response => response.json())
+            .then(data => setMembers(data))
+    }
+
+    const handleCommunityJoinClick = (communityId, userId) => {
+        fetch('http://localhost:8080/api/community/' + communityId + '/join/' + userId, {
+              method: 'POST',
+              credentials: 'include'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Can\'t join community')
+            }
+        })
+
+        fetchCommunityMembers(communityId)
+      }    
+
     useEffect(() => {
         const prefix = 'http://localhost:8080/api/community/'
         fetch(prefix + id)
@@ -19,15 +39,13 @@ function CommunityView({id, loggedUser}) {
             .then(response => response.json())
             .then(data => setPosts(data))
 
-        fetch(prefix + id + '/members')
-            .then(response => response.json())
-            .then(data => setMembers(data))
+        fetchCommunityMembers(id)
     }, [id])
 
     return (
         (community && posts && members) ?
         <>
-            <Community community={community} members={members} posts={posts} user={loggedUser}/>
+            <Community community={community} members={members} posts={posts} user={loggedUser} handleCommunityJoinClick={handleCommunityJoinClick}/>
             <PostsView posts={posts} user={loggedUser}/>
         </> :
         <>

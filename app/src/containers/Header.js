@@ -2,17 +2,7 @@ import '../styles/Header.css';
 import { Search, AccountCircle, Logout } from '@mui/icons-material';
 import { useState } from 'react';
 
-function Header({loggedUser}) {
-
-    const [logged, setLogged] = useState(loggedUser !== null)
-
-    function logout() {
-        fetch('http://localhost:8080/api/logout', {
-            method: 'GET',
-            credentials: 'include'
-        })
-        .then(response => setLogged(false))
-    }
+function Header({loggedUser, onLogout}) {
 
   return (
     <header className="header">
@@ -29,11 +19,11 @@ function Header({loggedUser}) {
             </label>
         </div>
     
-        {logged ?
+        {loggedUser !== null ?
             <div className="header__user">
                 <AccountCircle className="header__user-icon md-36"/>
                 <span className="header__user-username">{loggedUser.username}</span>
-                <div className="header__user-sign-out" onClick={logout}>
+                <div className="header__user-sign-out" onClick={onLogout}>
                     <Logout />
                 </div>
             </div>  :

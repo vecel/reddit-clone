@@ -1,31 +1,23 @@
 import { Add } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 
-function Community({community, members, posts, user}) {
+function Community({community, members, posts, user, handleCommunityJoinClick}) {
 
     const [joined, setJoined] = useState(false)
 
+    const onCommunityJoinClick = () => {
+        handleCommunityJoinClick(community.id, user.id)
+    }
+
     useEffect(() => {
+        if (user === null) {
+            setJoined(true)
+        }
         if (user !== null) {
             const isMember = members.some(member => member.id === user.id)
             setJoined(isMember)
         }
-        console.log('Community view refreshed')
-    }, [members, user, joined])
-
-    function handleClick() {
-        fetch('http://localhost:8080/api/community/' + community.id + '/join/' + user.id, {
-            method: 'POST',
-            credentials: 'include'
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Can\'t join community')
-            }
-            setJoined(true)
-            console.log('Joined')
-        })
-    }
+    }, [user, members])
 
     return (
         <div className="community">
@@ -41,9 +33,9 @@ function Community({community, members, posts, user}) {
                     <div className="community__stats-element">Posts: {posts.length}</div>
                 </div>
                 {
-                    (!joined) &&
-                    <a className="community__button community__button--join community__button--join-hover" onClick={handleClick}><Add />Join</a>
-                }
+                    !joined &&
+                    <a className="community__button community__button--join community__button--join-hover" onClick={onCommunityJoinClick}><Add />Join</a>
+                } 
                 <div className="community__button community__button--add-post community__add-post--hover"><Add />Add post</div>
                 <div className="horizontal-line"></div>
             </div>
