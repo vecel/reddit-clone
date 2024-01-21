@@ -2,15 +2,21 @@ import { useState } from 'react';
 
 function PostEdit({handleSubmitClick, handleCancelClick}) {
     
-    const [post, setPost] = useState('')
-
-    const handleChange = (event) => {
-        setPost(event.target.value)
+    const initalPostState = {
+        title: '',
+        content: ''
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        const submitter = event.nativeEvent.submitter.name
+    const [post, setPost] = useState(initalPostState)
+
+    const handleChange = (e) => {
+        const {name, value} = e.target
+        setPost({...post, [name]: value})
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const submitter = e.nativeEvent.submitter.name
         if (submitter === 'submit') {
             handleSubmitClick(post)
         }
@@ -21,7 +27,8 @@ function PostEdit({handleSubmitClick, handleCancelClick}) {
 
     return (
         <form className="post-edit" onSubmit={handleSubmit}>
-            <textarea className="post-edit__area" rows="10" placeholder="Write your post here" value={post || ''} onChange={handleChange}/>
+            <textarea className="post-edit__title" rows="1" placeholder="Title" name="title" value={post.title || ''} onChange={handleChange}/>
+            <textarea className="post-edit__content" rows="10" placeholder="Write your post here" name="content" value={post.content || ''} onChange={handleChange}/>
             <div className="post-edit__controllers">
                 <input className="post-edit__button post-edit__button--cancel post-edit__button--cancel-hover" type="submit" name="cancel" value="Cancel" />
                 <input className="post-edit__button post-edit__button--submit post-edit__button--submit-hover" type="submit" name="submit" value="Submit" />

@@ -82,7 +82,15 @@
     padding: 2rem;
 }
 
-.post-edit__area {
+.post-edit__title {
+    font-size: large;
+    font-weight: bold;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: calc(100% - 2rem);
+}
+
+.post-edit__content {
     padding: 1rem;
     width: calc(100% - 2rem);
 }

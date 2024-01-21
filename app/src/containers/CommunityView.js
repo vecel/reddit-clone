@@ -18,6 +18,12 @@ function CommunityView({id, loggedUser}) {
             .then(data => setMembers(data))
     }
 
+    const fetchCommunityPosts = (communityId) => {
+        fetch('http://localhost:8080/api/community/' + communityId + '/posts')
+            .then(response => response.json())
+            .then(data => setPosts(data))
+    }
+
     const handleCommunityJoinClick = (communityId, userId) => {
         fetch('http://localhost:8080/api/community/' + communityId + '/join/' + userId, {
               method: 'POST',
@@ -41,7 +47,21 @@ function CommunityView({id, loggedUser}) {
     }
 
     const handlePostEditSubmitClick = (post) => {
-        // fetch
+        fetch('http://localhost:8080/api/post/add/' + id + '/' + loggedUser.id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(post)
+        })
+        .then(response => {
+            if (response.ok) {
+                fetchCommunityPosts(id)
+            } else {
+                throw new Error('Can\'t add post')
+            }
+        })
         setPostEdit(false)
     }
 
@@ -51,10 +71,7 @@ function CommunityView({id, loggedUser}) {
             .then(response => response.json())
             .then(data => setCommunity(data))
 
-        fetch(prefix + id + '/posts')
-            .then(response => response.json())
-            .then(data => setPosts(data))
-
+        fetchCommunityPosts(id)
         fetchCommunityMembers(id)
     }, [id])
 
