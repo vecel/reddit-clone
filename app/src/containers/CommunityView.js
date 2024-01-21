@@ -36,6 +36,15 @@ function CommunityView({id, loggedUser}) {
         setPostEdit(true)
     }
 
+    const handlePostEditCancelClick = () => {
+        setPostEdit(false)
+    }
+
+    const handlePostEditSubmitClick = (post) => {
+        // fetch
+        setPostEdit(false)
+    }
+
     useEffect(() => {
         const prefix = 'http://localhost:8080/api/community/'
         fetch(prefix + id)
@@ -53,7 +62,7 @@ function CommunityView({id, loggedUser}) {
         (community && posts && members) ?
         <>
             <Community community={community} members={members} posts={posts} user={loggedUser} handleCommunityJoinClick={handleCommunityJoinClick} handleAddPostClick={handleAddPostClick}/>
-            {postEdit && <PostEdit /> }
+            {postEdit && <PostEdit handleSubmitClick={handlePostEditSubmitClick} handleCancelClick={handlePostEditCancelClick}/> }
             <PostsView posts={posts} user={loggedUser}/>
         </> :
         <>
