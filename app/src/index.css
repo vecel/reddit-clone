@@ -25,6 +25,20 @@ code {
     monospace;
 }
 
+textarea {
+    /* border: none; */
+    overflow: auto;
+    outline: none;
+    background-color: transparent;
+    color: var(--primary-bright);
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    /* resize: none; */
+}
+
 .view {
     background-color: var(--secondary-dark);
     color: var(--secondary-bright);

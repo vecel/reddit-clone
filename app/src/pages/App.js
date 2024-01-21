@@ -15,6 +15,14 @@ function App() {
     setSelectedCommunityId(id)
   }
 
+  const handleLogout = () => {
+      fetch('http://localhost:8080/api/logout', {
+          method: 'GET',
+          credentials: 'include'
+      })
+      .then(() => setLoggedUser(null))
+  }
+
   useEffect(() => {
     fetch('http://localhost:8080/api/communities')
       .then(response => response.json())
@@ -40,7 +48,7 @@ function App() {
   return (
     (loading) ? <div>Loading...</div> :
     <>
-      <Header loggedUser={loggedUser}/>
+      <Header loggedUser={loggedUser} onLogout={handleLogout}/>
       <Sidebar communities={communities} onCommunityClick={handleCommunityClick} />
       <View communityId={selectedCommunityId} loggedUser={loggedUser}/>
     </>
